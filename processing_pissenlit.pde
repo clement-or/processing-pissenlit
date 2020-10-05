@@ -1,5 +1,6 @@
 PImage plant3_petale;
 PImage plant3_petale_mirror;
+PImage fond;
 
 import processing.sound.*;
 AudioIn mic;   // mic est déclaré comme canal audio
@@ -9,6 +10,7 @@ void setup(){
   size(1200,600);
   plant3_petale = loadImage("plant3_petale.png");
   plant3_petale_mirror = loadImage("plant3_petale_mirror.png");
+  fond = loadImage("fond.png");
   mic = new AudioIn(this,0); // on n'utilise que le micro de gauche s'il y en a 2 :/
   mic.start(); // on allume le micro
   amp = new Amplitude(this);
@@ -16,9 +18,8 @@ void setup(){
 }
 
 void draw(){
-  background(255);
-  seed_1.fall();
   decor();
+  seed_1.fall();
 }
 
 seed seed_1 = new seed();

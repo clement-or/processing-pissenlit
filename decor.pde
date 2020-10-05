@@ -1,4 +1,5 @@
 public void decor() {
+  image(fond, 0, 0);
   fill(0);
   stroke(0);
   strokeWeight(1);
