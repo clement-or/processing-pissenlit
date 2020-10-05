@@ -1,27 +1,24 @@
-void setup() {
-  size(500,500);
-  new MovableCamera();
-  new Square(100);
+PImage plant3_petale;
+PImage plant3_petale_mirror;
+
+void setup(){
+  size(1200,600);
+  plant3_petale = loadImage("plant3_petale.png");
+  plant3_petale_mirror = loadImage("plant3_petale_mirror.png");
 }
 
-void draw() {
-  CameraManager.current.draw();
+void draw(){
+  background(255);
+  seed_1.fall();
+  decor();
 }
 
-void keyPressed() {
-  switch (keyCode) {
-    case UP: Input.up = true;
-    case RIGHT: Input.right = true;
-    case DOWN: Input.down = true;
-    case LEFT: Input.down = true;
-  }
-}
+seed seed_1 = new seed();
+plant plant_1 = new plant();
+plant2 plant_2 = new plant2();
+plant3 plant_3 = new plant3();
 
-void keyReleased() {
-  switch (keyCode) {
-    case UP: Input.up = false;
-    case RIGHT: Input.right = false;
-    case DOWN: Input.down = false;
-    case LEFT: Input.down = false;
-  }
-}
+
+public int niv_sol=500;
+public color rouge = color(255, 0, 0);
+public color noir = color(0);
