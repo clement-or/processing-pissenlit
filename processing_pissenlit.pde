@@ -14,7 +14,7 @@ void setup(){
   mic = new AudioIn(this,0); // on n'utilise que le micro de gauche s'il y en a 2 :/
   mic.start(); // on allume le micro
   amp = new Amplitude(this);
-  amp.input(mic); // on va chercher l'amplitude de mic
+  amp.input(mic); // on va chercher l'amplitude du mic
 }
 
 void draw(){
@@ -23,7 +23,7 @@ void draw(){
 }
 
 seed seed_1 = new seed();
-plant plant_1 = new plant();
+plant4 plant_1 = new plant4();
 plant2 plant_2 = new plant2();
 plant3 plant_3 = new plant3();
 

@@ -27,7 +27,7 @@ public class Camera {
   // Vérifier si l'objet est visible par la caméra ou non
   // Inutile pour le moment
   public boolean isInBounds(RenderedObject obj) {
-    PVector topLeft = this.position.sub(new PVector(width/2, height/2)); //<>//
+    PVector topLeft = this.position.sub(new PVector(width/2, height/2)); //<>// //<>//
     PVector bottomRight = this.position.add(new PVector(width/2, height/2));
     
     boolean tooFarLeft = obj.renderedPosition.x < topLeft.x;

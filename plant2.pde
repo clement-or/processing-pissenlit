@@ -28,7 +28,7 @@ public class plant2 {
 public void growth() {
    
    flower_timer += flower_speed;
-   println(flower_timer);
+   //println(flower_timer);
    
    strokeWeight(3); 
    noFill();

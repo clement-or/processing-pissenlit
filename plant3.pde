@@ -34,10 +34,10 @@ public void growth() {
    strokeCap(ROUND);
    noFill();
    stroke(0);
-   println("hauteur_rand : ", hauteur_rand);
-   println("hauteur_rand_mirror : ", hauteur_rand_mirror);
-   println("scale_x_mirror : ", scale_x_mirror);
-   println("scale_y_mirror : ", scale_y_mirror);
+   //println("hauteur_rand : ", hauteur_rand);
+   //println("hauteur_rand_mirror : ", hauteur_rand_mirror);
+   //println("scale_x_mirror : ", scale_x_mirror);
+   //println("scale_y_mirror : ", scale_y_mirror);
    
    line(Xaxis, niv_sol, Xaxis, top_rightY);
  
