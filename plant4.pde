@@ -14,46 +14,42 @@ public class plant4 {
   // génération des racines. pour chaque racine, on décide si elle apparaît ou pas
   // si la racine parent n'est pas apparue, on ne dessinera pas la racine enfant
   // pour les références de ces racines, cf GenRacines.png
-  int roots_lvl1_L = 1; //(int)random(0,2);
-  int roots_lvl1_R = 1; //(int)random(0,2);
+  int roots_lvl1_L = (int)random(0,2);
+  int roots_lvl1_R = (int)random(0,2);
   
-  int roots_lvl2_LL = 1; //(int)random(0,2);
-  int roots_lvl2_LR = 1; //(int)random(0,2);
-  int roots_lvl2_CL = 1; //(int)random(0,2);
-  int roots_lvl2_CR = 1; //(int)random(0,2);
-  int roots_lvl2_RL = 1; //(int)random(0,2);
-  int roots_lvl2_RR = 1; //(int)random(0,2);
+  int roots_lvl2_LL = (int)random(0,2);
+  int roots_lvl2_LR = (int)random(0,2);
+  int roots_lvl2_CL = (int)random(0,2);
+  int roots_lvl2_CR = (int)random(0,2);
+  int roots_lvl2_RL = (int)random(0,2);
+  int roots_lvl2_RR = (int)random(0,2);
   
-  int roots_lvl3_LLL = 1; //(int)random(0,2);
-  int roots_lvl3_LLR = 1; //(int)random(0,2);
-  int roots_lvl3_LCL = 1; //(int)random(0,2);
-  int roots_lvl3_LCR = 1; //(int)random(0,2);
-  int roots_lvl3_LRL = 1; //(int)random(0,2);
-  int roots_lvl3_LRR = 1; //(int)random(0,2);  
-  int roots_lvl3_CLL = 1; //(int)random(0,2);
-  int roots_lvl3_CLR = 1; //(int)random(0,2);
-  int roots_lvl3_CCL = 1; //(int)random(0,2);
-  int roots_lvl3_CCR = 1; //(int)random(0,2);
-  int roots_lvl3_CRL = 1; //(int)random(0,2);
-  int roots_lvl3_CRR = 1; //(int)random(0,2);
-  int roots_lvl3_RLL = 1; //(int)random(0,2);
-  int roots_lvl3_RLR = 1; //(int)random(0,2);
-  int roots_lvl3_RCL = 1; //(int)random(0,2);
-  int roots_lvl3_RCR = 1; //(int)random(0,2);
-  int roots_lvl3_RRL = 1; //(int)random(0,2);
-  int roots_lvl3_RRR = 1; //(int)random(0,2); 
+  int roots_lvl3_LLL = (int)random(0,2);
+  int roots_lvl3_LLR = (int)random(0,2);
+  int roots_lvl3_LCL = (int)random(0,2);
+  int roots_lvl3_LCR = (int)random(0,2);
+  int roots_lvl3_LRL = (int)random(0,2);
+  int roots_lvl3_LRR = (int)random(0,2);  
+  int roots_lvl3_CLL = (int)random(0,2);
+  int roots_lvl3_CLR = (int)random(0,2);
+  int roots_lvl3_CCL = (int)random(0,2);
+  int roots_lvl3_CCR = (int)random(0,2);
+  int roots_lvl3_CRL = (int)random(0,2);
+  int roots_lvl3_CRR = (int)random(0,2);
+  int roots_lvl3_RLL = (int)random(0,2);
+  int roots_lvl3_RLR = (int)random(0,2);
+  int roots_lvl3_RCL = (int)random(0,2);
+  int roots_lvl3_RCR = (int)random(0,2);
+  int roots_lvl3_RRL = (int)random(0,2);
+  int roots_lvl3_RRR = (int)random(0,2); 
 
-  //int roots_lvl2_L = (int)random(0,2); // les racines de niveau 1 ont forcément une racine de niveau 2 attachée, 0 = lvl2_LL, 1 = lvl2_LR
-  //int roots_lvl2_R = (int)random(0,2);
-  //int roots_lvl1 = (int)random(0,3); // racine supérieures : 0 = lvl1_L, 1 = lvl1_R, 2 = les deux
+  int rs1 = 75; // rs signifie "root_spacing"  |  rs1 est l'espacement d'une racine de niveau 1 par rapport à son parent
+  int rs2 = 25;
+  int rs3 = 10;
 
-  int rootspacing_lvl1 = 20;
-  int rootspacing_lvl2 = 10;
-  int rootspacing_lvl3 = 5;
-
-  int rootheight_lvl1 = 150;
-  int rootheight_lvl2 = 50;
-  int rootheight_lvl3 = 25;
+  int rh1 = 50;// rh signifie "root_height"
+  int rh2 = 25;
+  int rh3 = 10;
 
 public void growth() {
 
@@ -97,37 +93,113 @@ public void growth() {
 
    stroke(noir);
    if (roots_lvl1_L == 1){
-     line(Xaxis-rootspacing_lvl1,height-100,Xaxis-rootspacing_lvl1,height-200);
-     line(Xaxis-rootspacing_lvl1,height-200,Xaxis,height-200);
-     if (roots_lvl2_LL ==1){
-       line(Xaxis-75,height-100,Xaxis-75,height-150);
-       line(Xaxis-75,height-150,Xaxis-50,height-150);
+     line(Xaxis-rs1,height-niv_sol,Xaxis-rs1,height-niv_sol-rh1);
+     line(Xaxis-rs1,height-niv_sol-rh1,Xaxis,height-niv_sol-rh1);
+     if (roots_lvl2_LL == 1){
+       line(Xaxis-rs1-rs2,height-niv_sol,Xaxis-rs1-rs2,height-niv_sol-rh2);
+       line(Xaxis-rs1-rs2,height-niv_sol-rh2,Xaxis-rs1,height-niv_sol-rh2);
        if (roots_lvl3_LLL == 1){
-         line(Xaxis-85,height-100,Xaxis-85,height-125);
-         line(Xaxis-85,height-125,Xaxis-75,height-125);
+         line(Xaxis-rs1-rs2-rs3,height-niv_sol,Xaxis-rs1-rs2-rs3,height-niv_sol-rh3);
+         line(Xaxis-rs1-rs2-rs3,height-niv_sol-rh3,Xaxis-rs1-rs2,height-niv_sol-rh3);
        }
        if (roots_lvl3_LLR == 1){
-         line(Xaxis-65,height-100,Xaxis-65,height-125);
-         line(Xaxis-65,height-125,Xaxis-75,height-125);
+         line(Xaxis-rs1-rs2+rs3,height-niv_sol,Xaxis-rs1-rs2+rs3,height-niv_sol-rh3);
+         line(Xaxis-rs1-rs2+rs3,height-niv_sol-rh3,Xaxis-rs1-rs2,height-niv_sol-rh3);
        }
+     }
+     if (roots_lvl3_LCL == 1){
+       line(Xaxis-rs1-rs3,height-niv_sol,Xaxis-rs1-rs3,height-niv_sol-rh3);
+       line(Xaxis-rs1-rs3,height-niv_sol-rh3,Xaxis-rs1,height-niv_sol-rh3);
+     }
+     if (roots_lvl3_LCR == 1){
+       line(Xaxis-rs1+rs3,height-niv_sol,Xaxis-rs1+rs3,height-niv_sol-rh3);
+       line(Xaxis-rs1+rs3,height-niv_sol-rh3,Xaxis-rs1,height-niv_sol-rh3);
      }
      if (roots_lvl2_LR == 1){
-       line(Xaxis-25,height-100,Xaxis-25,height-150);
-       line(Xaxis-25,height-150,Xaxis-50,height-150);
+       line(Xaxis-rs1+rs2,height-niv_sol,Xaxis-rs1+rs2,height-niv_sol-rh2);
+       line(Xaxis-rs1+rs2,height-niv_sol-rh2,Xaxis-rs1,height-niv_sol-rh2);
        if (roots_lvl3_LRL == 1){
-         line(Xaxis-15,height-100,Xaxis-15,height-125);
-         line(Xaxis-15,height-125,Xaxis-25,height-125);
+         line(Xaxis-rs1+rs2-rs3,height-niv_sol,Xaxis-rs1+rs2-rs3,height-niv_sol-rh3);
+         line(Xaxis-rs1+rs2-rs3,height-niv_sol-rh3,Xaxis-rs1+rs2,height-niv_sol-rh3);
        }
        if (roots_lvl3_LRR == 1){
-         line(Xaxis-35,height-100,Xaxis-35,height-125);
-         line(Xaxis-35,height-125,Xaxis-25,height-125);
+         line(Xaxis-rs1+rs2+rs3,height-niv_sol,Xaxis-rs1+rs2+rs3,height-niv_sol-rh3);
+         line(Xaxis-rs1+rs2+rs3,height-niv_sol-rh3,Xaxis-rs1+rs2,height-niv_sol-rh3);
        }
      }
+     }
+
+
+   if (roots_lvl2_CL == 1){
+     line(Xaxis-rs2,height-niv_sol,Xaxis-rs2,height-niv_sol-rh2);
+     line(Xaxis-rs2,height-niv_sol-rh2,Xaxis,height-niv_sol-rh2);
+     if (roots_lvl3_CLL == 1){
+       line(Xaxis-rs2-rs3,height-niv_sol,Xaxis-rs2-rs3,height-niv_sol-rh3);
+       line(Xaxis-rs2-rs3,height-niv_sol-rh3,Xaxis-rs2,height-niv_sol-rh3);
+     }
+     if (roots_lvl3_CLR == 1){
+       line(Xaxis-rs2+rs3,height-niv_sol,Xaxis-rs2+rs3,height-niv_sol-rh3);
+       line(Xaxis-rs2+rs3,height-niv_sol-rh3,Xaxis-rs2,height-niv_sol-rh3);
+     }
    }
+   if (roots_lvl3_CCL == 1){
+     line(Xaxis-rs3,height-niv_sol,Xaxis-rs3,height-niv_sol-rh3);
+     line(Xaxis-rs3,height-niv_sol-rh3,Xaxis,height-niv_sol-rh3);
+   }
+   if (roots_lvl3_CCR == 1){
+     line(Xaxis+rs3,height-niv_sol,Xaxis+rs3,height-niv_sol-rh3);
+     line(Xaxis+rs3,height-niv_sol-rh3,Xaxis,height-niv_sol-rh3);
+   }
+   if (roots_lvl2_CR == 1){
+     line(Xaxis+rs2,height-niv_sol,Xaxis+rs2,height-niv_sol-rh2);
+     line(Xaxis+rs2,height-niv_sol-rh2,Xaxis,height-niv_sol-rh2);
+     if (roots_lvl3_CRL == 1){
+       line(Xaxis+rs2-rs3,height-niv_sol,Xaxis+rs2-rs3,height-niv_sol-rh3);
+       line(Xaxis+rs2-rs3,height-niv_sol-rh3,Xaxis+rs2,height-niv_sol-rh3);
+     }
+     if (roots_lvl3_CRR == 1){
+       line(Xaxis+rs2+rs3,height-niv_sol,Xaxis+rs2+rs3,height-niv_sol-rh3);
+       line(Xaxis+rs2+rs3,height-niv_sol-rh3,Xaxis+rs2,height-niv_sol-rh3);
+     }
+   }
+
    if (roots_lvl1_R == 1){
-     line(Xaxis+50,height-100,Xaxis+50,height-200);
-     line(Xaxis+50,height-200,Xaxis,height-200);
-   }
+     line(Xaxis+rs1,height-niv_sol,Xaxis+rs1,height-niv_sol-rh1);
+     line(Xaxis+rs1,height-niv_sol-rh1,Xaxis,height-niv_sol-rh1);
+     if (roots_lvl2_RL == 1){
+       line(Xaxis+rs1-rs2,height-niv_sol,Xaxis+rs1-rs2,height-niv_sol-rh2);
+       line(Xaxis+rs1-rs2,height-niv_sol-rh2,Xaxis+rs1,height-niv_sol-rh2);
+       if (roots_lvl3_RLL == 1){
+         line(Xaxis+rs1-rs2-rs3,height-niv_sol,Xaxis+rs1-rs2-rs3,height-niv_sol-rh3);
+         line(Xaxis+rs1-rs2-rs3,height-niv_sol-rh3,Xaxis+rs1-rs2,height-niv_sol-rh3);
+       }
+       if (roots_lvl3_RLR == 1){
+         line(Xaxis+rs1-rs2+rs3,height-niv_sol,Xaxis+rs1-rs2+rs3,height-niv_sol-rh3);
+         line(Xaxis+rs1-rs2+rs3,height-niv_sol-rh3,Xaxis+rs1-rs2,height-niv_sol-rh3);
+       }
+     }
+     if (roots_lvl3_RCL == 1){
+       line(Xaxis+rs1-rs3,height-niv_sol,Xaxis+rs1-rs3,height-niv_sol-rh3);
+       line(Xaxis+rs1-rs3,height-niv_sol-rh3,Xaxis+rs1,height-niv_sol-rh3);
+     }
+     if (roots_lvl3_RCR == 1){
+       line(Xaxis+rs1+rs3,height-niv_sol,Xaxis+rs1+rs3,height-niv_sol-rh3);
+       line(Xaxis+rs1+rs3,height-niv_sol-rh3,Xaxis+rs1,height-niv_sol-rh3);
+     }
+     if (roots_lvl2_RR == 1){
+       line(Xaxis+rs1+rs2,height-niv_sol,Xaxis+rs1+rs2,height-niv_sol-rh2);
+       line(Xaxis+rs1+rs2,height-niv_sol-rh2,Xaxis+rs1,height-niv_sol-rh2);
+       if (roots_lvl3_RRL == 1){
+         line(Xaxis+rs1+rs2-rs3,height-niv_sol,Xaxis+rs1+rs2-rs3,height-niv_sol-rh3);
+         line(Xaxis+rs1+rs2-rs3,height-niv_sol-rh3,Xaxis+rs1+rs2,height-niv_sol-rh3);
+       }
+       if (roots_lvl3_RRR == 1){
+         line(Xaxis+rs1+rs2+rs3,height-niv_sol,Xaxis+rs1+rs2+rs3,height-niv_sol-rh3);
+         line(Xaxis+rs1+rs2+rs3,height-niv_sol-rh3,Xaxis+rs1+rs2,height-niv_sol-rh3);
+       }
+     }
+     }
+
    
    
 //code pour utiliser les anciennes valeurs
