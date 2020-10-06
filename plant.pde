@@ -71,7 +71,7 @@ public void growth() {
    smooth();
    strokeWeight(3);
    stroke(0);
-   line(Xaxis, niv_sol, Xaxis, top_rightY);
+   line(Xaxis, height-niv_sol, Xaxis, top_rightY);
    noStroke();
 
    fill(noir);

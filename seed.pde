@@ -14,12 +14,12 @@ public void fall() {
   noStroke();
   circle(pos_x, pos_y, size);   // dessin graine
    
-  if (pos_y < niv_sol+size) {    // si graine au-dessus du sol, elle descend
+  if (pos_y < height-niv_sol+size) {    // si graine au-dessus du sol, elle descend
     pos_y += gravity;
     pos_x += push_ratio_x * vol;
     pos_y -= push_ratio_y * vol;
   } 
-  if (pos_y >= niv_sol+size) {   // si touche sol, la plante pousse
+  if (pos_y >= height-niv_sol+size) {   // si touche sol, la plante pousse
     plant_1.growth();
     plant_2.growth();
     plant_3.growth();

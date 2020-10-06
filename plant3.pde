@@ -39,7 +39,7 @@ public void growth() {
    //println("scale_x_mirror : ", scale_x_mirror);
    //println("scale_y_mirror : ", scale_y_mirror);
    
-   line(Xaxis, niv_sol, Xaxis, top_rightY);
+   line(Xaxis, height-niv_sol, Xaxis, top_rightY);
  
    noStroke();
    fill(noir);

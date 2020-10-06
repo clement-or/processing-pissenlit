@@ -28,6 +28,6 @@ plant2 plant_2 = new plant2();
 plant3 plant_3 = new plant3();
 
 
-public int niv_sol=500;
+public int niv_sol=100;
 public color rouge = color(255, 0, 0);
 public color noir = color(0);
