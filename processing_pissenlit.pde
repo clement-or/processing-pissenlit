@@ -22,10 +22,10 @@ void draw(){
   seed_1.fall();
 }
 
-seed seed_1 = new seed();
-plant4 plant_1 = new plant4();
-plant2 plant_2 = new plant2();
-plant3 plant_3 = new plant3();
+Seed seed_1 = new Seed();
+Plant4 plant_1 = new Plant4();
+Plant2 plant_2 = new Plant2();
+Plant3 plant_3 = new Plant3();
 
 
 public int niv_sol=100;

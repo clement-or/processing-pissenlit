@@ -1,4 +1,4 @@
-public class seed {
+public class Seed {
 
   float gravity = 5;    // vitesse de chute
   float size = 10;      // rayon de la graine

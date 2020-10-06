@@ -1,4 +1,4 @@
-public class plant {
+public class Plant1 {
 
   float Xaxis = 600;         // coordonnées X de la tige de la fleur
   float top_rightY = 500;    // bout de la fleur 
