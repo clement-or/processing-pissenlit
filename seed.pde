@@ -20,7 +20,7 @@ public void fall() {
     pos_y -= push_ratio_y * vol;
   } 
   if (pos_y >= height-niv_sol+size) {   // si touche sol, la plante pousse
-    plant_1.growth();
+
     plant_2.growth();
     plant_3.growth();
   }

@@ -1,6 +1,5 @@
-public class Plant4 {
+public class Plant4 extends RenderedObject {
 
-  float Xaxis = 600;         // coordonnées X de la tige de la fleur
   float top_rightY = 500;    // bout de la fleur 
   float stem_speed = 3;      // vitesse de pousse de la tige
   
@@ -50,24 +49,31 @@ public class Plant4 {
   int rh1 = 50;// rh signifie "root_height"
   int rh2 = 25;
   int rh3 = 10;
+  
+  
+  Plant4(int pos_x, int pos_y){
+    super();
+    position.x = pos_x;
+    position.y = pos_y;
+  }
 
-public void growth() {
+public void draw() {
 
    flower_timer += flower_speed;              // les boules poussent à vitesse croissante
 
    smooth();
    strokeWeight(3);
    stroke(noir);
-   line(Xaxis, height-niv_sol, Xaxis, top_rightY);
+   line(renderedPosition.x, renderedPosition.y, renderedPosition.x, top_rightY);
    noStroke();
 
    fill(noir);
-   circle(Xaxis+27, 360, r_flwr1);
-   circle(Xaxis-27, 300, r_flwr2);
-   circle(Xaxis+27, 240, r_flwr3);
+   circle(renderedPosition.x+27, 360, r_flwr1);
+   circle(renderedPosition.x-27, 300, r_flwr2);
+   circle(renderedPosition.x+27, 240, r_flwr3);
 
    fill(rouge);
-   circle(600, 180, r_flwr4);   
+   circle(renderedPosition.x, 180, r_flwr4);   
 
    if (top_rightY>179){                        // croissance de la tige
      top_rightY -= stem_speed;}
@@ -93,109 +99,109 @@ public void growth() {
 
    stroke(noir);
    if (roots_lvl1_L == 1){
-     line(Xaxis-rs1,height-niv_sol,Xaxis-rs1,height-niv_sol-rh1);
-     line(Xaxis-rs1,height-niv_sol-rh1,Xaxis,height-niv_sol-rh1);
+     line(renderedPosition.x-rs1,renderedPosition.y,renderedPosition.x-rs1,renderedPosition.y-rh1);
+     line(renderedPosition.x-rs1,renderedPosition.y-rh1,renderedPosition.x,renderedPosition.y-rh1);
      if (roots_lvl2_LL == 1){
-       line(Xaxis-rs1-rs2,height-niv_sol,Xaxis-rs1-rs2,height-niv_sol-rh2);
-       line(Xaxis-rs1-rs2,height-niv_sol-rh2,Xaxis-rs1,height-niv_sol-rh2);
+       line(renderedPosition.x-rs1-rs2,renderedPosition.y,renderedPosition.x-rs1-rs2,renderedPosition.y-rh2);
+       line(renderedPosition.x-rs1-rs2,renderedPosition.y-rh2,renderedPosition.x-rs1,renderedPosition.y-rh2);
        if (roots_lvl3_LLL == 1){
-         line(Xaxis-rs1-rs2-rs3,height-niv_sol,Xaxis-rs1-rs2-rs3,height-niv_sol-rh3);
-         line(Xaxis-rs1-rs2-rs3,height-niv_sol-rh3,Xaxis-rs1-rs2,height-niv_sol-rh3);
+         line(renderedPosition.x-rs1-rs2-rs3,renderedPosition.y,renderedPosition.x-rs1-rs2-rs3,renderedPosition.y-rh3);
+         line(renderedPosition.x-rs1-rs2-rs3,renderedPosition.y-rh3,renderedPosition.x-rs1-rs2,renderedPosition.y-rh3);
        }
        if (roots_lvl3_LLR == 1){
-         line(Xaxis-rs1-rs2+rs3,height-niv_sol,Xaxis-rs1-rs2+rs3,height-niv_sol-rh3);
-         line(Xaxis-rs1-rs2+rs3,height-niv_sol-rh3,Xaxis-rs1-rs2,height-niv_sol-rh3);
+         line(renderedPosition.x-rs1-rs2+rs3,renderedPosition.y,renderedPosition.x-rs1-rs2+rs3,renderedPosition.y-rh3);
+         line(renderedPosition.x-rs1-rs2+rs3,renderedPosition.y-rh3,renderedPosition.x-rs1-rs2,renderedPosition.y-rh3);
        }
      }
      if (roots_lvl3_LCL == 1){
-       line(Xaxis-rs1-rs3,height-niv_sol,Xaxis-rs1-rs3,height-niv_sol-rh3);
-       line(Xaxis-rs1-rs3,height-niv_sol-rh3,Xaxis-rs1,height-niv_sol-rh3);
+       line(renderedPosition.x-rs1-rs3,renderedPosition.y,renderedPosition.x-rs1-rs3,renderedPosition.y-rh3);
+       line(renderedPosition.x-rs1-rs3,renderedPosition.y-rh3,renderedPosition.x-rs1,renderedPosition.y-rh3);
      }
      if (roots_lvl3_LCR == 1){
-       line(Xaxis-rs1+rs3,height-niv_sol,Xaxis-rs1+rs3,height-niv_sol-rh3);
-       line(Xaxis-rs1+rs3,height-niv_sol-rh3,Xaxis-rs1,height-niv_sol-rh3);
+       line(renderedPosition.x-rs1+rs3,renderedPosition.y,renderedPosition.x-rs1+rs3,renderedPosition.y-rh3);
+       line(renderedPosition.x-rs1+rs3,renderedPosition.y-rh3,renderedPosition.x-rs1,renderedPosition.y-rh3);
      }
      if (roots_lvl2_LR == 1){
-       line(Xaxis-rs1+rs2,height-niv_sol,Xaxis-rs1+rs2,height-niv_sol-rh2);
-       line(Xaxis-rs1+rs2,height-niv_sol-rh2,Xaxis-rs1,height-niv_sol-rh2);
+       line(renderedPosition.x-rs1+rs2,renderedPosition.y,renderedPosition.x-rs1+rs2,renderedPosition.y-rh2);
+       line(renderedPosition.x-rs1+rs2,renderedPosition.y-rh2,renderedPosition.x-rs1,renderedPosition.y-rh2);
        if (roots_lvl3_LRL == 1){
-         line(Xaxis-rs1+rs2-rs3,height-niv_sol,Xaxis-rs1+rs2-rs3,height-niv_sol-rh3);
-         line(Xaxis-rs1+rs2-rs3,height-niv_sol-rh3,Xaxis-rs1+rs2,height-niv_sol-rh3);
+         line(renderedPosition.x-rs1+rs2-rs3,renderedPosition.y,renderedPosition.x-rs1+rs2-rs3,renderedPosition.y-rh3);
+         line(renderedPosition.x-rs1+rs2-rs3,renderedPosition.y-rh3,renderedPosition.x-rs1+rs2,renderedPosition.y-rh3);
        }
        if (roots_lvl3_LRR == 1){
-         line(Xaxis-rs1+rs2+rs3,height-niv_sol,Xaxis-rs1+rs2+rs3,height-niv_sol-rh3);
-         line(Xaxis-rs1+rs2+rs3,height-niv_sol-rh3,Xaxis-rs1+rs2,height-niv_sol-rh3);
+         line(renderedPosition.x-rs1+rs2+rs3,renderedPosition.y,renderedPosition.x-rs1+rs2+rs3,renderedPosition.y-rh3);
+         line(renderedPosition.x-rs1+rs2+rs3,renderedPosition.y-rh3,renderedPosition.x-rs1+rs2,renderedPosition.y-rh3);
        }
      }
      }
 
 
    if (roots_lvl2_CL == 1){
-     line(Xaxis-rs2,height-niv_sol,Xaxis-rs2,height-niv_sol-rh2);
-     line(Xaxis-rs2,height-niv_sol-rh2,Xaxis,height-niv_sol-rh2);
+     line(renderedPosition.x-rs2,renderedPosition.y,renderedPosition.x-rs2,renderedPosition.y-rh2);
+     line(renderedPosition.x-rs2,renderedPosition.y-rh2,renderedPosition.x,renderedPosition.y-rh2);
      if (roots_lvl3_CLL == 1){
-       line(Xaxis-rs2-rs3,height-niv_sol,Xaxis-rs2-rs3,height-niv_sol-rh3);
-       line(Xaxis-rs2-rs3,height-niv_sol-rh3,Xaxis-rs2,height-niv_sol-rh3);
+       line(renderedPosition.x-rs2-rs3,renderedPosition.y,renderedPosition.x-rs2-rs3,renderedPosition.y-rh3);
+       line(renderedPosition.x-rs2-rs3,renderedPosition.y-rh3,renderedPosition.x-rs2,renderedPosition.y-rh3);
      }
      if (roots_lvl3_CLR == 1){
-       line(Xaxis-rs2+rs3,height-niv_sol,Xaxis-rs2+rs3,height-niv_sol-rh3);
-       line(Xaxis-rs2+rs3,height-niv_sol-rh3,Xaxis-rs2,height-niv_sol-rh3);
+       line(renderedPosition.x-rs2+rs3,renderedPosition.y,renderedPosition.x-rs2+rs3,renderedPosition.y-rh3);
+       line(renderedPosition.x-rs2+rs3,renderedPosition.y-rh3,renderedPosition.x-rs2,renderedPosition.y-rh3);
      }
    }
    if (roots_lvl3_CCL == 1){
-     line(Xaxis-rs3,height-niv_sol,Xaxis-rs3,height-niv_sol-rh3);
-     line(Xaxis-rs3,height-niv_sol-rh3,Xaxis,height-niv_sol-rh3);
+     line(renderedPosition.x-rs3,renderedPosition.y,renderedPosition.x-rs3,renderedPosition.y-rh3);
+     line(renderedPosition.x-rs3,renderedPosition.y-rh3,renderedPosition.x,renderedPosition.y-rh3);
    }
    if (roots_lvl3_CCR == 1){
-     line(Xaxis+rs3,height-niv_sol,Xaxis+rs3,height-niv_sol-rh3);
-     line(Xaxis+rs3,height-niv_sol-rh3,Xaxis,height-niv_sol-rh3);
+     line(renderedPosition.x+rs3,renderedPosition.y,renderedPosition.x+rs3,renderedPosition.y-rh3);
+     line(renderedPosition.x+rs3,renderedPosition.y-rh3,renderedPosition.x,renderedPosition.y-rh3);
    }
    if (roots_lvl2_CR == 1){
-     line(Xaxis+rs2,height-niv_sol,Xaxis+rs2,height-niv_sol-rh2);
-     line(Xaxis+rs2,height-niv_sol-rh2,Xaxis,height-niv_sol-rh2);
+     line(renderedPosition.x+rs2,renderedPosition.y,renderedPosition.x+rs2,renderedPosition.y-rh2);
+     line(renderedPosition.x+rs2,renderedPosition.y-rh2,renderedPosition.x,renderedPosition.y-rh2);
      if (roots_lvl3_CRL == 1){
-       line(Xaxis+rs2-rs3,height-niv_sol,Xaxis+rs2-rs3,height-niv_sol-rh3);
-       line(Xaxis+rs2-rs3,height-niv_sol-rh3,Xaxis+rs2,height-niv_sol-rh3);
+       line(renderedPosition.x+rs2-rs3,renderedPosition.y,renderedPosition.x+rs2-rs3,renderedPosition.y-rh3);
+       line(renderedPosition.x+rs2-rs3,renderedPosition.y-rh3,renderedPosition.x+rs2,renderedPosition.y-rh3);
      }
      if (roots_lvl3_CRR == 1){
-       line(Xaxis+rs2+rs3,height-niv_sol,Xaxis+rs2+rs3,height-niv_sol-rh3);
-       line(Xaxis+rs2+rs3,height-niv_sol-rh3,Xaxis+rs2,height-niv_sol-rh3);
+       line(renderedPosition.x+rs2+rs3,renderedPosition.y,renderedPosition.x+rs2+rs3,renderedPosition.y-rh3);
+       line(renderedPosition.x+rs2+rs3,renderedPosition.y-rh3,renderedPosition.x+rs2,renderedPosition.y-rh3);
      }
    }
 
    if (roots_lvl1_R == 1){
-     line(Xaxis+rs1,height-niv_sol,Xaxis+rs1,height-niv_sol-rh1);
-     line(Xaxis+rs1,height-niv_sol-rh1,Xaxis,height-niv_sol-rh1);
+     line(renderedPosition.x+rs1,renderedPosition.y,renderedPosition.x+rs1,renderedPosition.y-rh1);
+     line(renderedPosition.x+rs1,renderedPosition.y-rh1,renderedPosition.x,renderedPosition.y-rh1);
      if (roots_lvl2_RL == 1){
-       line(Xaxis+rs1-rs2,height-niv_sol,Xaxis+rs1-rs2,height-niv_sol-rh2);
-       line(Xaxis+rs1-rs2,height-niv_sol-rh2,Xaxis+rs1,height-niv_sol-rh2);
+       line(renderedPosition.x+rs1-rs2,renderedPosition.y,renderedPosition.x+rs1-rs2,renderedPosition.y-rh2);
+       line(renderedPosition.x+rs1-rs2,renderedPosition.y-rh2,renderedPosition.x+rs1,renderedPosition.y-rh2);
        if (roots_lvl3_RLL == 1){
-         line(Xaxis+rs1-rs2-rs3,height-niv_sol,Xaxis+rs1-rs2-rs3,height-niv_sol-rh3);
-         line(Xaxis+rs1-rs2-rs3,height-niv_sol-rh3,Xaxis+rs1-rs2,height-niv_sol-rh3);
+         line(renderedPosition.x+rs1-rs2-rs3,renderedPosition.y,renderedPosition.x+rs1-rs2-rs3,renderedPosition.y-rh3);
+         line(renderedPosition.x+rs1-rs2-rs3,renderedPosition.y-rh3,renderedPosition.x+rs1-rs2,renderedPosition.y-rh3);
        }
        if (roots_lvl3_RLR == 1){
-         line(Xaxis+rs1-rs2+rs3,height-niv_sol,Xaxis+rs1-rs2+rs3,height-niv_sol-rh3);
-         line(Xaxis+rs1-rs2+rs3,height-niv_sol-rh3,Xaxis+rs1-rs2,height-niv_sol-rh3);
+         line(renderedPosition.x+rs1-rs2+rs3,renderedPosition.y,renderedPosition.x+rs1-rs2+rs3,renderedPosition.y-rh3);
+         line(renderedPosition.x+rs1-rs2+rs3,renderedPosition.y-rh3,renderedPosition.x+rs1-rs2,renderedPosition.y-rh3);
        }
      }
      if (roots_lvl3_RCL == 1){
-       line(Xaxis+rs1-rs3,height-niv_sol,Xaxis+rs1-rs3,height-niv_sol-rh3);
-       line(Xaxis+rs1-rs3,height-niv_sol-rh3,Xaxis+rs1,height-niv_sol-rh3);
+       line(renderedPosition.x+rs1-rs3,renderedPosition.y,renderedPosition.x+rs1-rs3,renderedPosition.y-rh3);
+       line(renderedPosition.x+rs1-rs3,renderedPosition.y-rh3,renderedPosition.x+rs1,renderedPosition.y-rh3);
      }
      if (roots_lvl3_RCR == 1){
-       line(Xaxis+rs1+rs3,height-niv_sol,Xaxis+rs1+rs3,height-niv_sol-rh3);
-       line(Xaxis+rs1+rs3,height-niv_sol-rh3,Xaxis+rs1,height-niv_sol-rh3);
+       line(renderedPosition.x+rs1+rs3,renderedPosition.y,renderedPosition.x+rs1+rs3,renderedPosition.y-rh3);
+       line(renderedPosition.x+rs1+rs3,renderedPosition.y-rh3,renderedPosition.x+rs1,renderedPosition.y-rh3);
      }
      if (roots_lvl2_RR == 1){
-       line(Xaxis+rs1+rs2,height-niv_sol,Xaxis+rs1+rs2,height-niv_sol-rh2);
-       line(Xaxis+rs1+rs2,height-niv_sol-rh2,Xaxis+rs1,height-niv_sol-rh2);
+       line(renderedPosition.x+rs1+rs2,renderedPosition.y,renderedPosition.x+rs1+rs2,renderedPosition.y-rh2);
+       line(renderedPosition.x+rs1+rs2,renderedPosition.y-rh2,renderedPosition.x+rs1,renderedPosition.y-rh2);
        if (roots_lvl3_RRL == 1){
-         line(Xaxis+rs1+rs2-rs3,height-niv_sol,Xaxis+rs1+rs2-rs3,height-niv_sol-rh3);
-         line(Xaxis+rs1+rs2-rs3,height-niv_sol-rh3,Xaxis+rs1+rs2,height-niv_sol-rh3);
+         line(renderedPosition.x+rs1+rs2-rs3,renderedPosition.y,renderedPosition.x+rs1+rs2-rs3,renderedPosition.y-rh3);
+         line(renderedPosition.x+rs1+rs2-rs3,renderedPosition.y-rh3,renderedPosition.x+rs1+rs2,renderedPosition.y-rh3);
        }
        if (roots_lvl3_RRR == 1){
-         line(Xaxis+rs1+rs2+rs3,height-niv_sol,Xaxis+rs1+rs2+rs3,height-niv_sol-rh3);
-         line(Xaxis+rs1+rs2+rs3,height-niv_sol-rh3,Xaxis+rs1+rs2,height-niv_sol-rh3);
+         line(renderedPosition.x+rs1+rs2+rs3,renderedPosition.y,renderedPosition.x+rs1+rs2+rs3,renderedPosition.y-rh3);
+         line(renderedPosition.x+rs1+rs2+rs3,renderedPosition.y-rh3,renderedPosition.x+rs1+rs2,renderedPosition.y-rh3);
        }
      }
      }
@@ -206,20 +212,20 @@ public void growth() {
 // ce morceau de code marche, c'est juste qu'il y a des diagonales au lieu de béziers pour fabriquer les racines
 
 //   if ((roots_lvl1 == 0) || (roots_lvl1 == 2)){  // racines spawnent si leur random les a créées
-//     line(Xaxis-50,height-100,Xaxis,height-200);
+//     line(renderedPosition.x-50,height-100,renderedPosition.x,height-200);
 //     if (roots_lvl2_L == 0){
-//       line(Xaxis-75,height-100,Xaxis-50,height-150);
+//       line(renderedPosition.x-75,height-100,renderedPosition.x-50,height-150);
 //     } else{
-//       line(Xaxis-25,height-100,Xaxis-50,height-150);
+//       line(renderedPosition.x-25,height-100,renderedPosition.x-50,height-150);
 //       }
 //   }
 //
 //   if ((roots_lvl1 == 1) || (roots_lvl1 == 2)){
-//     line(Xaxis,height-200,Xaxis+50,height-100);
+//     line(renderedPosition.x,height-200,renderedPosition.x+50,height-100);
 //     if (roots_lvl2_R == 0){
-//       line(Xaxis+75,height-100,Xaxis+50,height-150);
+//       line(renderedPosition.x+75,height-100,renderedPosition.x+50,height-150);
 //     } else{
-//       line(Xaxis+25,height-100,Xaxis+50,height-150);
+//       line(renderedPosition.x+25,height-100,renderedPosition.x+50,height-150);
 //       }
 //  }
 

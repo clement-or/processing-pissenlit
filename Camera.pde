@@ -15,6 +15,7 @@ public class Camera {
   public void draw() {
     // Nettoyer l'écran
     clear();
+    decor();
     
     // Dessiner chaque objet 
     for (RenderedObject obj : renderedObjects) {                                                                                                                                                                                                                          

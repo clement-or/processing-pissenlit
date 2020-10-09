@@ -15,15 +15,19 @@ void setup(){
   mic.start(); // on allume le micro
   amp = new Amplitude(this);
   amp.input(mic); // on va chercher l'amplitude du mic
+  
+  new Camera();
+  new Plant4(500,500);
+  
 }
 
 void draw(){
-  decor();
-  seed_1.fall();
+  //decor();
+  CameraManager.current.draw();
+  CameraManager.current.position.x += 0.01;
 }
 
-Seed seed_1 = new Seed();
-Plant4 plant_1 = new Plant4();
+
 Plant2 plant_2 = new Plant2();
 Plant3 plant_3 = new Plant3();
 
