@@ -22,7 +22,6 @@ public void fall() {
   if (pos_y >= height-niv_sol+size) {   // si touche sol, la plante pousse
 
     plant_2.growth();
-    plant_3.growth();
   }
 
 }

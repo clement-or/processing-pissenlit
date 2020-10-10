@@ -18,7 +18,7 @@ void setup(){
   
   new Camera();
   new Plant4(500,500);
-  
+  new Plant3(900,500);
 }
 
 void draw(){
@@ -29,7 +29,6 @@ void draw(){
 
 
 Plant2 plant_2 = new Plant2();
-Plant3 plant_3 = new Plant3();
 
 
 public int niv_sol=100;
