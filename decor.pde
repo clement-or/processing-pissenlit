@@ -1,6 +1,6 @@
 public void decor() {
-  //image(fond, 0, 0);
-  background(255);
+  image(fond, 0, 0);
+  //background(255);
   fill(0);
   stroke(0);
   strokeWeight(1);

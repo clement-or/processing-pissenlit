@@ -139,8 +139,8 @@ public class Plant1 extends RenderedObject {
       top_rightY -= stem_speed;
     }
 
-    println("n_roots : ", n_roots);
-    println("opacity1 : ", opacity1);
+    //println("n_roots : ", n_roots);
+    //println("opacity1 : ", opacity1);
 
     //RACINES PROCEDURALES
 

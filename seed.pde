@@ -27,6 +27,7 @@ public class Seed extends RenderedObject {
     } 
 
     if (pos_y >= height-niv_sol+size) {   // si touche sol, la plante pousse
+      //new Plant1((int) pos_x,(int) pos_y); // /!\ ici problème si j'enlève le commentaire /!\
     }
   }
 }

@@ -2,10 +2,6 @@ PImage plant3_petale;
 PImage plant3_petale_mirror;
 PImage fond;
 
-import processing.sound.*;
-AudioIn mic;   // mic est déclaré comme canal audio
-public Amplitude amp; // idem, "amplitude" en audio ~= volume du son
-
 void setup() {
   size(1200, 600);
   plant3_petale = loadImage("plant3_petale.png");
@@ -23,7 +19,7 @@ void setup() {
 }
 
 void draw() {
-  //decor();
+  decor();
   CameraManager.current.draw();
   CameraManager.current.position.x += 0.01;
 }
