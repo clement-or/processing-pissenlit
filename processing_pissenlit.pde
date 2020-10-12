@@ -14,8 +14,9 @@ void setup() {
 
   new Camera();
   new Plant1(600, 500);
-  new Plant3(900, 500);
+  //new Plant3(900, 500);
   new Seed(600, 100);
+  new Plant5(900, 500);
 }
 
 void draw() {
