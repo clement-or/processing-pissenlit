@@ -10,7 +10,7 @@ public class Plant5 extends RenderedObject {
   float r_flwr3 = 0;
   float r_flwr4 = 0;
 
-  int hauteur_tige = (int) random(80, 120);
+  int hauteur_tige = (int) random(50, 300);
   int deg1 = 90;
   int deg2 = 90;
   float angle1 = radians(deg1);
