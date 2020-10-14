@@ -23,7 +23,7 @@ void setup() {
 void draw() {
   decor();
   CameraManager.current.draw();
-  //CameraManager.current.position.x += 0.01;
+  CameraManager.current.position.x += 0.01;
 }
 
 
@@ -52,8 +52,7 @@ public RenderedObject createRandomPlant(float x, float y) {
     break;
     
     case 3:
-      r = new Plant4(x, y);
-    break;
+      //r = new Plant4(x, y);
     
     case 4:
       r = new Plant5(x, y);

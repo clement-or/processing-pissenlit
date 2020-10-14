@@ -14,17 +14,17 @@ public class Seed extends RenderedObject {
     position.x = pos_x;
     position.y = pos_y;
   }
-  
+
   private void physics() {
     vol = amp.analyze();
-    
+
     // Si graine au-dessus du sol, elle descend
     if (position.y < height-niv_sol+size) {    
       position.y += gravity;
-      //position.x += push_ratio_x * vol;
-      //position.y -= push_ratio_y * vol;
+      position.x += push_ratio_x * vol;
+      position.y -= push_ratio_y * vol;
     } 
-    
+
     if (position.y >= height-niv_sol+size && !is_planted) {   // si touche sol, la plante pousse
       is_planted = true;
       createRandomPlant(position.x, position.y);
@@ -34,10 +34,10 @@ public class Seed extends RenderedObject {
   public void draw() {
     // Si la graine a déjà été plantée, on ne fait rien
     if (is_planted) return;
-    
+
     // D'abord on calcule la physique
     physics();
-    
+
     // Après, on affiche la graine
     fill(noir);
     noStroke();
