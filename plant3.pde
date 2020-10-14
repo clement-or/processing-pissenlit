@@ -59,7 +59,7 @@ public class Plant3 extends RenderedObject {
   // il faudrait garder cette accélération (graphiquement super), tout en la rendant 
   // indépendante pour chaque fleur
 
-  Plant3(int pos_x, int pos_y) {
+  Plant3(float pos_x,float pos_y) {
     super();
     position.x = pos_x;
     position.y = pos_y;

@@ -18,7 +18,7 @@ public class Plant5 extends RenderedObject {
   int diametre_x = 200;
   int diametre_y = 150;
 
-  Plant5(int pos_x, int pos_y) {
+  Plant5(float pos_x, float pos_y) {
     super();
     position.x = pos_x;
     position.y = pos_y;

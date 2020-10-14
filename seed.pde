@@ -7,27 +7,40 @@ public class Seed extends RenderedObject {
   float vol;        // analyse de l'amplitude stockée dans vol
   float push_ratio_x = 50; // ratio arbitraire qui gère la poussée du souffle
   float push_ratio_y = 50;
+  boolean is_planted = false; // Est-ce que la graine a été plantée ?
 
   Seed(int pos_x, int pos_y) {
     super();
     position.x = pos_x;
     position.y = pos_y;
   }
+  
+  private void physics() {
+    vol = amp.analyze();
+    
+    // Si graine au-dessus du sol, elle descend
+    if (position.y < height-niv_sol+size) {    
+      position.y += gravity;
+      //position.x += push_ratio_x * vol;
+      //position.y -= push_ratio_y * vol;
+    } 
+    
+    if (position.y >= height-niv_sol+size && !is_planted) {   // si touche sol, la plante pousse
+      is_planted = true;
+      createRandomPlant(position.x, position.y);
+    }
+  }
 
   public void draw() {
-    vol = amp.analyze();
+    // Si la graine a déjà été plantée, on ne fait rien
+    if (is_planted) return;
+    
+    // D'abord on calcule la physique
+    physics();
+    
+    // Après, on affiche la graine
     fill(noir);
     noStroke();
-    circle(pos_x, pos_y, size);   // dessin graine
-
-    if (pos_y < height-niv_sol+size) {    // si graine au-dessus du sol, elle descend
-      pos_y += gravity;
-      pos_x += push_ratio_x * vol;
-      pos_y -= push_ratio_y * vol;
-    } 
-
-    if (pos_y >= height-niv_sol+size) {   // si touche sol, la plante pousse
-      //new Plant1((int) pos_x,(int) pos_y); // /!\ ici problème si j'enlève le commentaire /!\
-    }
+    circle(renderedPosition.x, renderedPosition.y, size);   // dessin graine
   }
 }

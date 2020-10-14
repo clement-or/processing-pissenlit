@@ -1,6 +1,6 @@
 public class Plant1 extends RenderedObject {
 
-  Plant1(int pos_x, int pos_y) {
+  Plant1(float pos_x, float pos_y) {
     super();
     position.x = pos_x;
     position.y = pos_y;
