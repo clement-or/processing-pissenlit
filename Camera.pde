@@ -7,6 +7,8 @@ public class Camera { //<>// //<>// //<>//
   public ArrayList<RenderedObject> renderedObjects = new ArrayList<RenderedObject>();
   
   private ArrayList<RenderedObject> queuedObjects = new ArrayList<RenderedObject>();
+  
+  Background background = new Background();
 
   Camera() {
     if (CameraManager.current == null)
@@ -17,7 +19,10 @@ public class Camera { //<>// //<>// //<>//
   public void draw() {
     // Nettoyer l'écran
     clear();
-    decor();
+    
+    // Dessiner le fond
+    background.renderedPosition = background.position.sub(this.position);
+    background.draw();
 
     // Dessiner chaque objet 
     for (RenderedObject obj : renderedObjects) {                                                                                                                                                                                                                          

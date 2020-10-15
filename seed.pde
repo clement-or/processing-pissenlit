@@ -2,8 +2,6 @@ public class Seed extends RenderedObject {
 
   float gravity = 5;    // vitesse de chute
   float size = 10;      // rayon de la graine
-  float pos_x = 600;    // coordonnées X graine
-  float pos_y = 100;  // coordonnées Y graine
   float vol;        // analyse de l'amplitude stockée dans vol
   float push_ratio_x = 50; // ratio arbitraire qui gère la poussée du souffle
   float push_ratio_y = 50;
