@@ -1,4 +1,11 @@
-public class Plant2 {
+public class Plant2 extends RenderedObject {
+
+
+  Plant2(float pos_x, float pos_y) {
+    super();
+    position.x = pos_x;
+    position.y = pos_y;
+  }
 
   float Xaxis = 300;         // coordonnées X de la tige de la fleur
   float top_rightY = 500;    // bout de la fleur 
@@ -13,19 +20,18 @@ public class Plant2 {
   float r_flwr5 = 0;
   float r_flwr6 = 0;
 
-  float anch1_x = 300;
-  float anch1_y = 500;
-  float bez1_x = 300;
-  float bez1_y = 500;
-  float bez2_x = 300;
-  float bez2_y = 500;
+  float anch1_x = renderedPosition.x;
+  float anch1_y = renderedPosition.y;
+  float bez1_x = renderedPosition.x;
+  float bez1_y = renderedPosition.y;
+  float bez2_x = renderedPosition.x;
+  float bez2_y = renderedPosition.y;
 
 
   // actuellement, la vitesse de croissance de la fleur a une accélération constante
   // il faudrait garder cette accélération (graphiquement super), tout en la rendant 
   // indépendante pour chaque fleur
-
-  public void growth() {
+  public void draw() {
 
     flower_timer += flower_speed;
     //println(flower_timer);
@@ -33,22 +39,22 @@ public class Plant2 {
     strokeWeight(3); 
     noFill();
     stroke(0);
-    bezier(anch1_x, anch1_y, bez1_x, bez1_y, bez2_x, bez2_y, 300, 500);
+    bezier(anch1_x, anch1_y, bez1_x, bez1_y, bez2_x, bez2_y, renderedPosition.x, renderedPosition.y);
     // https://www.desmos.com/calculator/4gbkfl910b?lang=fr
 
     noStroke();
     fill(noir);
     // ici ultra hardcodé, faudra utiliser la fonction bezierPoint() pour
     // les placer parfaitement sur la tige
-    circle(309-7, 600-149, r_flwr1);
-    circle(307-9, 600-224, r_flwr2);
-    circle(298-7, 600-276, r_flwr3);
-    circle(280-7, 600-325, r_flwr4);
-    circle(247-7, 600-353, r_flwr5);
+    circle(renderedPosition.x+2, renderedPosition.y-49, r_flwr1);
+    circle(renderedPosition.x-2, renderedPosition.y-124, r_flwr2);
+    circle(renderedPosition.x-9, renderedPosition.y-176, r_flwr3);
+    circle(renderedPosition.x-27,renderedPosition.y-225, r_flwr4);
+    circle(renderedPosition.x-60, renderedPosition.y-253, r_flwr5);
 
 
     fill(rouge); 
-    circle(213, 248, r_flwr6);
+    circle(renderedPosition.x-87, renderedPosition.y-252, r_flwr6);
 
 
 
@@ -79,31 +85,32 @@ public class Plant2 {
     }
 
 
+println("renderedPosition :", renderedPosition.x,renderedPosition.y);
+println("bezier curve :", anch1_x, anch1_y, bez1_x, bez1_y, bez2_x, bez2_y, renderedPosition.x, renderedPosition.y);
 
-
-    if (anch1_x >= 213)
+    if (anch1_x >= renderedPosition.x-87)
     {
-      if (anch1_y >= 254)
+      if (anch1_y >= renderedPosition.y-246)
       {
         anch1_y -= flower_timer*2.28;
       }
 
-      if (bez1_x >= 302)
+      if (bez1_x >= renderedPosition.x+2)
       {
         bez1_x -= flower_timer*1.8;
       }
 
-      if (bez1_y >= 224)
+      if (bez1_y >= renderedPosition.y-276)
       {
         bez1_y -= flower_timer*2.6;
       }
 
-      if (bez2_x >= 319)
+      if (bez2_x >= renderedPosition.x+19)
       {
         bez2_x -= flower_timer*3;
       }
 
-      if (bez2_y >= 388)
+      if (bez2_y >= renderedPosition.y-112)
       {
         bez2_y -= flower_timer*1.8;
       }
