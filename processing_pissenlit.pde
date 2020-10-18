@@ -4,7 +4,7 @@ PImage plant3_petale_mirror;
 
 void setup() {
   // Forcer un framerate constant
-  frameRate(30);
+  frameRate(60);
   size(1200, 600);
   
   // Code à déplacer dans Plant3
@@ -20,10 +20,10 @@ void setup() {
   // Création des objets du jeu, temporaire
   // On aura plus tard une classe qui gérera ça
   new Camera();
-  //new Plant1(600, 500);
-  new Plant2(900, 500);
+  new Plant1(600, 500);
+  //new Plant2(900, 500);
   //new Seed(600, 100);
-  //new Plant5(300, 500);
+  new Plant5(300, 500);
   //new Plant_start(600, 500);
   
   //for (int i = 0; i < 50; i++) {
