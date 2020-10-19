@@ -20,11 +20,11 @@ void setup() {
   // Création des objets du jeu, temporaire
   // On aura plus tard une classe qui gérera ça
   new Camera();
-  new Plant1(600, 500);
+  //new Plant1(600, 500);
   //new Plant2(900, 500);
   //new Seed(600, 100);
-  new Plant5(300, 500);
-  //new Plant_start(600, 500);
+  //Plant5(300, 500);
+  new Plant_start(600, 500);
   
   //for (int i = 0; i < 50; i++) {
   //  new Plant1(i*500, 500);

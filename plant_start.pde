@@ -23,12 +23,15 @@ public class Plant_start extends RenderedObject {
   float r_flwr1 = 25;
   float r_flwr2 = 50;
 
-  float angle_petale_gauche;
-  float angle_petale_droite;
+  float angle_petale_gauche = 30;
+  float angle_petale_droite = -30;
+  float angle_d;
+  float angle_g;
+
+  int m = millis();
+  boolean open = false;
 
   public void draw() {
-
-    flower_timer += flower_speed;
 
     smooth();
     strokeWeight(3);
@@ -43,29 +46,44 @@ public class Plant_start extends RenderedObject {
     fill(rouge);
     circle(renderedPosition.x, 180, r_flwr1);
 
-    imageMode(CORNERS);
-    //image(petale_start_mirror, renderedPosition.x+1, 300, renderedPosition.x-img_petale_width, 300-img_petale_height);
+    //println("angle_g :", angle_g);
+    //println("angle_d :", angle_d);
 
-    //rotate(flower_timer);
-    //translate(-petale_start.width/2, -petale_start.height/2);
-    
-    
-    if (flower_timer < 10) {
-      translate(600, 300);
-      rotate(flower_timer/2*-PI/3.0);
-      image(petale_start, 0, img_petale_height, img_petale_width, 0);
-      
+    // ouverture pétales
+
+
+    if (open) {
+      flower_timer += flower_speed;
+      if (angle_g < 2) {
+        angle_g = flower_timer/1.8*radians(angle_petale_gauche);
+      }
+
+      if (angle_d > -1.9) {
+        angle_d = flower_timer/2*radians(angle_petale_droite);
+      }
     }
-    
-    //if (flower_timer >= 10) {
-     // image(petale_start_mirror, renderedPosition.x+1, 300, renderedPosition.x-img_petale_width, 300-img_petale_height);
-      //image(petale_start, renderedPosition.x, 300, renderedPosition.x+img_petale_width, 300-img_petale_height);
-      
-    //}
-    
 
 
 
+    //println("m : ",m);
+    m = millis();
+    if (m > 3000) {
+      open = true;
+    }
+
+    imageMode(CORNERS);
+
+    pushMatrix();
+    translate(renderedPosition.x, 300);
+    rotate(angle_g);
+    image(petale_start, -1, -1, img_petale_width, -img_petale_height);
+    popMatrix();
+
+    pushMatrix();
+    translate(renderedPosition.x, 300);
+    rotate(angle_d);
+    image(petale_start_mirror, 0, 0, -img_petale_width, -img_petale_height);
+    popMatrix();
 
     top_rightY = 200;
   }
