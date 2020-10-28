@@ -1,12 +1,6 @@
 public class Plant2 extends RenderedObject {
 
-  Plant2(float pos_x, float pos_y) {
-    super();
-    position.x = pos_x;
-    position.y = pos_y;
-  }
-
-  boolean init = false;
+  boolean needInit = true;
 
   float Xaxis = 300;         // coordonnées X de la tige de la fleur
   float top_rightY = 500;    // bout de la fleur 
@@ -21,6 +15,20 @@ public class Plant2 extends RenderedObject {
   float r_flwr5 = 0;
   float r_flwr6 = 0;
 
+  Plant2(float pos_x, float pos_y) {
+    super();
+    position.x = pos_x;
+    position.y = pos_y;
+    float anch1_x = renderedPosition.x; // marche pas???
+    float anch1_y = renderedPosition.y;
+    float bez1_x = renderedPosition.x;
+    float bez1_y = renderedPosition.y;
+    float bez2_x = renderedPosition.x;
+    float bez2_y = renderedPosition.y;
+  }
+
+
+
   float anch1_x = renderedPosition.x; // marche pas???
   float anch1_y = renderedPosition.y;
   float bez1_x = renderedPosition.x;
@@ -34,11 +42,15 @@ public class Plant2 extends RenderedObject {
 
   public void draw() {
 
-    println("init :", init);
-    
-    if (init == true); // comme l'initialisation ne marchait pas, j'en ai fabriqué une lors de la première boucle
+    //println("needInit :", needInit);
+
+    println("Xaxis:", Xaxis);
+
+    if (needInit); // comme l'initialisation ne marchait pas, j'en ai fabriqué une lors de la première boucle
+                   // qui ne marche pas non plus
+                   // yes
     {
-      println("init :" , init);
+      println("needInit :", needInit);
       anch1_x = renderedPosition.x;
       anch1_y = renderedPosition.y;
       bez1_x = renderedPosition.x;
@@ -46,17 +58,18 @@ public class Plant2 extends RenderedObject {
       bez2_x = renderedPosition.x;
       bez2_y = renderedPosition.y;
 
-      init = true;
+      needInit = false;
     }
-    
 
-    
-    //println("init :", init);
+
+
+    //println("needInit :", needInit);
+    /*
      println("anch1 :", anch1_x, ",", anch1_y);
      println("bez1 :", bez1_x, ",", bez1_y);
      println("bez2 :", bez2_x, ",",bez2_y);
      println("renderedPosition :", renderedPosition.x, ",", renderedPosition.y);
-     
+     */
 
     flower_timer += flower_speed;
     //println(flower_timer);
