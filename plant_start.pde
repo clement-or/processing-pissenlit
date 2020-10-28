@@ -3,7 +3,7 @@ PImage petale_start_mirror;
 
 public class Plant_start extends RenderedObject {
 
-  Plant_start(int pos_x, int pos_y) {
+  Plant_start(float pos_x, float pos_y) {
     super();
     position.x = pos_x;
     position.y = pos_y;
