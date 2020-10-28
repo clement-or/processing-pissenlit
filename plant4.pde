@@ -1,4 +1,6 @@
-public class Plant4 extends RenderedObject {
+// cette plante n'est finalement pas utilisée
+
+/* public class Plant4 extends RenderedObject {
 
   float top_rightY = 500;    // bout de la fleur 
   float stem_speed = 3;      // vitesse de pousse de la tige
@@ -235,3 +237,5 @@ public class Plant4 extends RenderedObject {
     //  }
   }
 }
+
+*/
