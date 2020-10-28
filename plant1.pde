@@ -17,6 +17,8 @@ public class Plant1 extends RenderedObject {
   float r_flwr3 = 0;
   float r_flwr4 = 0;
 
+
+
   // Racines au format courbe de bézier
   // soit : Racine 1 = root1(root1_x1, root1_y1, root1_x2, root1_y2, root1_x3, root1_y3, root1_x4, root1_y4)
   // Racine 2 = root2(root2_x1, root2_y1, root2_x2, root2_y2, root2_x3, root2_y3, root2_x4, root2_y4), ...
@@ -73,15 +75,6 @@ public class Plant1 extends RenderedObject {
 
   public void draw() {
 
-    flower_timer += flower_speed;
-
-    //println("root1_x1 : ", root1_x1);
-    //println("root2_x1 : ", root2_x1);
-    //println("root3_x1 : ", root3_x1);
-    //println("root4_x1 : ", root4_x1);
-    //println("position.x : ", renderedPosition.x);
-
-    // update position des racines en x dans le temps, suivant la caméra
     root1_x1 = renderedPosition.x;
     root1_x2 = renderedPosition.x+60;
     root1_x3 = renderedPosition.x+50;
@@ -101,6 +94,16 @@ public class Plant1 extends RenderedObject {
     root4_x2 = renderedPosition.x-(root3_x2-renderedPosition.x);
     root4_x3 = renderedPosition.x-(root3_x3-renderedPosition.x);
     root4_x4 = renderedPosition.x-(root3_x4-renderedPosition.x);
+
+    flower_timer += flower_speed;
+
+    //println("root1_x1 : ", root1_x1);
+    //println("root2_x1 : ", root2_x1);
+    //println("root3_x1 : ", root3_x1);
+    //println("root4_x1 : ", root4_x1);
+    //println("position.x : ", renderedPosition.x);
+
+    // update position des racines en x dans le temps, suivant la caméra
 
     smooth();
     strokeWeight(3);
