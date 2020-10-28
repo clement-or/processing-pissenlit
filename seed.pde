@@ -21,7 +21,7 @@ public class Seed extends RenderedObject {
       position.y += gravity;
       position.x += push_ratio_x * vol;
       position.y -= push_ratio_y * vol;
-    } 
+    }
 
     if (position.y >= height-niv_sol+size && !is_planted) {   // si touche sol, la plante pousse
       is_planted = true;

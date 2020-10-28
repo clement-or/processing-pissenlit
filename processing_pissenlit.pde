@@ -22,11 +22,16 @@ void setup() {
   new Camera();
   //new Plant1(600, 500);
   //new Plant2(900, 500);
-  //new Seed(600, 100);
+  new Seed(600, 100);
   //Plant5(300, 500);
+<<<<<<< Updated upstream
   //Plant_start(600, 500);
   //Intro 
   new Intro(600, -10);
+=======
+  //new Plant_start(600, 500);
+  
+>>>>>>> Stashed changes
   //for (int i = 0; i < 50; i++) {
   //  new Plant1(i*500, 500);
   //}
@@ -51,27 +56,29 @@ public color noir = color(0);
 
 // Fonction "globale" qui ne devrait pas exister mais Processing fait comme ça
 public RenderedObject createRandomPlant(float x, float y) {
-  int rnd = (int)random(0, 4);
+  //int rnd = (int)random(0, 4);
+  int rnd = 1;
   RenderedObject r = null;
   
   switch (rnd) {
     case 0:
-      r = new Plant1(x, y);
-    break;
+      //r = new Plant1(x, y);
+    //break;
     
     case 1:
-      //r = new Plant2(x, y);
+      r = new Plant_start(x, y);
+    break;
     
     case 2:
-      r = new Plant3(x, y);
-    break;
+      //r = new Plant3(x, y);
+    //break;
     
     case 3:
       //r = new Plant4(x, y);
     
     case 4:
-      r = new Plant5(x, y);
-    break;
+      //r = new Plant5(x, y);
+    //break;
   }
   
   return r != null ? r : null;

@@ -51,26 +51,6 @@ public class Plant_start extends RenderedObject {
 
     // ouverture pétales
 
-
-    if (open) {
-      flower_timer += flower_speed;
-      if (angle_g < 2) {
-        angle_g = flower_timer/1.8*radians(angle_petale_gauche);
-      }
-
-      if (angle_d > -1.9) {
-        angle_d = flower_timer/2*radians(angle_petale_droite);
-      }
-    }
-
-
-
-    //println("m : ",m);
-    m = millis();
-    if (m > 3000) {
-      open = true;
-    }
-
     imageMode(CORNERS);
 
     pushMatrix();
@@ -85,6 +65,41 @@ public class Plant_start extends RenderedObject {
     image(petale_start_mirror, 0, 0, -img_petale_width, -img_petale_height);
     popMatrix();
 
-    top_rightY = 200;
+
+    if (top_rightY > 200) { // à partir d'une certaine hauteur de tige, création des pétales et apparition des racines
+
+      top_rightY -= stem_speed;
+    }
+    
+    if (top_rightY <= 200) { // à partir d'une certaine hauteur de tige, création des pétales et apparition des racines
+
+      top_rightY = 200;
+    }
+    
+    if (top_rightY == 200) { // à partir d'une certaine hauteur de tige, création des pétales et apparition des racines
+      open = true;
+      top_rightY = 200;
+    }
+    
+    if (open) {
+      flower_timer += flower_speed;
+      if (angle_g < 2) {
+        angle_g = flower_timer/2*radians(angle_petale_gauche);
+      }
+
+      if (angle_d > -2) {
+        angle_d = flower_timer/2*radians(angle_petale_droite);
+      }
+    }
+    
+    /*if ((top_rightY < 300) & (left_petal2_scale_x <= img_petale_width)) {
+        left_petal2_scale_x += flower_timer*1.26;
+        right_petal2_scale_x -= flower_timer*1.26;
+      }
+
+      if ((top_rightY < 300) & (left_petal2_scale_y >= hauteur_rand2-img_petale_height)) {
+        left_petal2_scale_y -= flower_timer;
+        right_petal2_scale_y -= flower_timer;
+      }*/
   }
 }
