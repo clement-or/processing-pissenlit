@@ -39,6 +39,5 @@ public class Intro extends RenderedObject {
       fill (rouge);
       circle(renderedPosition.x, renderedPosition.y, size);   // dessin graine
     }
-    println("lol: ", is_planted);
   }
 }
