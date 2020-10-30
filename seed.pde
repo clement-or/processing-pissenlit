@@ -7,7 +7,7 @@ public class Seed extends RenderedObject {
   float push_ratio_y = 50;
   boolean is_planted = false; // Est-ce que la graine a été plantée ?
 
-  Seed(int pos_x, int pos_y) {
+  Seed(float pos_x, float pos_y) {
     super();
     position.x = pos_x;
     position.y = pos_y;

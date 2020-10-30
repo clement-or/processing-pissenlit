@@ -55,14 +55,14 @@ public class Plant_start extends RenderedObject {
     flower_timer += flower_speed;
 
     noStroke();
-    
+
     fill(noir);
     circle(renderedPosition.x, 180, r_flwr2); // dessin de la graine noire
-    
+
     fill(rouge);
     circle(renderedPosition.x, 180, radius_seed1); // dessin de la graine rouge
 
-    
+
 
 
 
@@ -130,7 +130,7 @@ public class Plant_start extends RenderedObject {
     if (anim_grow_shrink == true) { // animation de clignotement de la graine rouge
       radius_seed1 = map(sin(angle1), -1, 1, min_r_seed1, max_r_seed1);
     }
-    
+
     angle1 +=da;
 
     // Animation de pousse des pétales (de scale = 0 à état fermé)
@@ -149,10 +149,9 @@ public class Plant_start extends RenderedObject {
     if ((top_rightY < 310) & (petal_scale_y_mirror >= -img_petale_height)) {
       petal_scale_y_mirror -= flower_timer/1.3;
     }
-    
+
     if ((petal_scale_y_mirror <= -img_petale_height) & (petal_scale_y <= -img_petale_height)) { // déclenchement du clignotement de la graine rouge
       anim_grow_shrink = true;
     }
-    
   }
 }

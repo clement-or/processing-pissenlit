@@ -19,15 +19,7 @@ public class Plant2 extends RenderedObject {
     super();
     position.x = pos_x;
     position.y = pos_y;
-    float anch1_x = renderedPosition.x; // marche pas???
-    float anch1_y = renderedPosition.y;
-    float bez1_x = renderedPosition.x;
-    float bez1_y = renderedPosition.y;
-    float bez2_x = renderedPosition.x;
-    float bez2_y = renderedPosition.y;
   }
-
-
 
   float anch1_x = renderedPosition.x; // marche pas???
   float anch1_y = renderedPosition.y;
@@ -35,6 +27,8 @@ public class Plant2 extends RenderedObject {
   float bez1_y = renderedPosition.y;
   float bez2_x = renderedPosition.x;
   float bez2_y = renderedPosition.y;
+
+  boolean grow_plant2 = true;
 
   // actuellement, la vitesse de croissance de la fleur a une accélération constante
   // il faudrait garder cette accélération (graphiquement super), tout en la rendant 
@@ -46,10 +40,7 @@ public class Plant2 extends RenderedObject {
 
     println("Xaxis:", Xaxis);
 
-    if (needInit); // comme l'initialisation ne marchait pas, j'en ai fabriqué une lors de la première boucle
-                   // qui ne marche pas non plus
-                   // yes
-    {
+    while (needInit == true) {
       println("needInit :", needInit);
       anch1_x = renderedPosition.x;
       anch1_y = renderedPosition.y;
@@ -64,12 +55,12 @@ public class Plant2 extends RenderedObject {
 
 
     //println("needInit :", needInit);
-    /*
-     println("anch1 :", anch1_x, ",", anch1_y);
-     println("bez1 :", bez1_x, ",", bez1_y);
-     println("bez2 :", bez2_x, ",",bez2_y);
-     println("renderedPosition :", renderedPosition.x, ",", renderedPosition.y);
-     */
+
+    println("anch1 :", anch1_x, ",", anch1_y);
+    println("bez1 :", bez1_x, ",", bez1_y);
+    println("bez2 :", bez2_x, ",", bez2_y);
+    println("renderedPosition :", renderedPosition.x, ",", renderedPosition.y);
+
 
     flower_timer += flower_speed;
     //println(flower_timer);
@@ -78,6 +69,7 @@ public class Plant2 extends RenderedObject {
     noFill();
     stroke(0);
     bezier(anch1_x, anch1_y, bez1_x, bez1_y, bez2_x, bez2_y, renderedPosition.x, renderedPosition.y);
+    //bezier(anch1_x-87, anch1_y-246, bez1_x+2, bez1_y-276, bez2_x+19, bez2_y-112, renderedPosition.x, renderedPosition.y);
     // https://www.desmos.com/calculator/4gbkfl910b?lang=fr
 
 
@@ -85,7 +77,7 @@ public class Plant2 extends RenderedObject {
     fill(noir);
     // ici ultra hardcodé, faudra utiliser la fonction bezierPoint() pour
     // les placer parfaitement sur la tige
-    circle(renderedPosition.x+2, renderedPosition.y-49, r_flwr1);
+    circle(renderedPosition.x, renderedPosition.y-49, r_flwr1);
     circle(renderedPosition.x-2, renderedPosition.y-124, r_flwr2);
     circle(renderedPosition.x-9, renderedPosition.y-176, r_flwr3);
     circle(renderedPosition.x-27, renderedPosition.y-225, r_flwr4);
@@ -114,9 +106,12 @@ public class Plant2 extends RenderedObject {
       r_flwr6 += flower_timer;
     }
 
+    if (grow_plant2 == true) {
+      if (anch1_x >= renderedPosition.x-87)
+      {
+        anch1_x -= flower_timer/1.5;
+      }
 
-    if (anch1_x >= renderedPosition.x-87)
-    {
       if (anch1_y >= renderedPosition.y-246)
       {
         anch1_y -= flower_timer*2.28;
@@ -141,8 +136,19 @@ public class Plant2 extends RenderedObject {
       {
         bez2_y -= flower_timer*1.8;
       }
-
-      anch1_x -= flower_timer/1.5;
     }
+
+    if (r_flwr6 >= 10) {
+      r_flwr6 = 10;
+      grow_plant2 = false;
+      anch1_x = renderedPosition.x-87.59995;
+      anch1_y = renderedPosition.y-252.05394;
+      bez1_x = renderedPosition.x;
+      bez1_y = renderedPosition.y-278.8499;
+      bez2_x = renderedPosition.x;
+      bez2_y = renderedPosition.y-114.75;
+    }
+    
+    println("grow_plant2 :", grow_plant2);
   }
 }
