@@ -45,6 +45,7 @@ public class Plant_start extends RenderedObject {
   float petal_scale_y_mirror; // scaling Y de la pétale de gauche
 
   boolean open = false; // quand open = true, la fleur s'ouvre
+  
 
   public void draw() {
 
