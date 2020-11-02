@@ -22,7 +22,10 @@ public class Plant5 extends RenderedObject {
     super();
     position.x = pos_x;
     position.y = pos_y;
+    sop = new SeedOnPlant(0, 0, 0, 0);
   }
+
+  SeedOnPlant sop;
 
   public void draw() {
 
@@ -41,11 +44,15 @@ public class Plant5 extends RenderedObject {
     arc(renderedPosition.x, hauteur_tige - 70, diametre_x, diametre_y, angle1, angle2, CHORD);
 
     fill(rouge);
-    circle(renderedPosition.x, hauteur_tige - 32, r_flwr4);
+    //circle(renderedPosition.x, hauteur_tige - 32, r_flwr4);
+    sop.position.x = position.x;
+    sop.position.y = hauteur_tige - 32;
+    sop.size = r_flwr4;
+    sop.max_size = 20;
 
     /*println("hauteur_tige :", hauteur_tige);
-    println("top_rightY :", top_rightY);
-    println("deg1 :", deg1);*/
+     println("top_rightY :", top_rightY);
+     println("deg1 :", deg1);*/
 
     if (top_rightY > hauteur_tige) {     // croissance de la tige
       top_rightY -= stem_speed;

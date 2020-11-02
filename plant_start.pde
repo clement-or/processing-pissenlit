@@ -35,11 +35,9 @@ public class Plant_start extends RenderedObject {
   float petal_scale_y; // scaling Y de la pétale de droite
   float petal_scale_x_mirror; // scaling X de la pétale de gauche
   float petal_scale_y_mirror; // scaling Y de la pétale de gauche
-  
-  SeedOnPlant seedOnPlant;
 
   boolean open = false; // quand open = true, la fleur s'ouvre
-  
+
 
   Plant_start(float pos_x, float pos_y) {
     super();
@@ -47,9 +45,11 @@ public class Plant_start extends RenderedObject {
     position.y = pos_y;
     petale_start = loadImage("petale_start.png");
     petale_start_mirror = loadImage("petale_start_mirror.png");
-    
-    seedOnPlant = new SeedOnPlant(0, 0, 0);
+
+    seedOnPlant = new SeedOnPlant(0, 0, 0, 0);
   }
+
+  SeedOnPlant seedOnPlant;
 
   public void draw() {
 
@@ -58,21 +58,10 @@ public class Plant_start extends RenderedObject {
     stroke(0);
     line(renderedPosition.x, height-niv_sol, renderedPosition.x, top_rightY); // dessin de la tige, top_rightY évolue dans le temps
     flower_timer += flower_speed;
-
     noStroke();
 
     fill(noir);
     circle(renderedPosition.x, 180, r_flwr2); // dessin de la graine noire
-
-    seedOnPlant.position.x = position.x;
-    seedOnPlant.position.y = 180;
-    seedOnPlant.size = radius_seed1;
-    
-    
-
-
-
-
 
 
     // Animation de l'ouverture des pétales
@@ -95,6 +84,11 @@ public class Plant_start extends RenderedObject {
     image(petale_start_mirror, 0, 0, petal_scale_x_mirror, petal_scale_y_mirror);
     //image(petale_start_mirror, 0, 0, -img_petale_width, -img_petale_height);
     popMatrix();
+
+    seedOnPlant.position.x = position.x;
+    seedOnPlant.position.y = 180;
+    seedOnPlant.size = radius_seed1;
+    seedOnPlant.max_size = min_r_seed1;
 
     // variation des angles g et d pour animer les pétales
     if (open) {

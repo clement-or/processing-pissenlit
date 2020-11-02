@@ -7,8 +7,8 @@ PImage icones;
 PImage[] images = new PImage [54];
 
 int numFrames = 54;
-float longueur_icone = 300 /2;
-float hauteur_icone = 169 /2;
+float longueur_icone = 300/2;
+float hauteur_icone = 169/2;
 int currentFrame = 0;
 
 void setup() {
@@ -33,7 +33,7 @@ void setup() {
   //new Plant2(900, 500);
   //new Seed(600, 100);
   //Plant5(300, 500);
-  new Plant1(750, 500);
+  //new Plant1(750, 500);
   //new Plant2(500, 500);
   //new Seed(600, 100);
   //new Seed_on_plant(200, 200);
@@ -48,17 +48,12 @@ void setup() {
     String icones = "souffle_micro_" + nf(i, 5) + ".png";
     images[i] = loadImage(icones);
   }
-
-  //for (int i = 0; i < 50; i++) {
-  //  new Plant1(i*500, 500);
-  //}
 }
 
 // Afficher les éléments du jeu via la Camera
 void draw() {
   CameraManager.current.draw();
-  
-  
+
   currentFrame = (currentFrame+1) % numFrames;  // Use % to cycle through frames
   for (int x = -100; x < width; x += images[0].width) {
     imageMode(CORNERS);
@@ -79,8 +74,8 @@ public color noir = color(0);
 
 // Fonction "globale" qui ne devrait pas exister mais Processing fait comme ça
 public RenderedObject createRandomPlant(float x, float y) {
-  //int rnd = (int)random(0, 4);
-  int rnd = 0;
+  int rnd = (int)random(0, 4);
+  //int rnd = 0;
   RenderedObject r = null;
 
   switch (rnd) {

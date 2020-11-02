@@ -1,13 +1,13 @@
-public class Camera { //<>// //<>// //<>//
+public class Camera { //<>// //<>// //<>// //<>// //<>// //<>//
 
   // La position de la caméra dans le monde 2D
   public PVector position = new PVector(0, 0);
 
   // La liste des objets que la caméra va afficher
   public ArrayList<RenderedObject> renderedObjects = new ArrayList<RenderedObject>();
-  
+
   private ArrayList<RenderedObject> queuedObjects = new ArrayList<RenderedObject>();
-  
+
   Background background = new Background();
 
   Camera() {
@@ -19,7 +19,7 @@ public class Camera { //<>// //<>// //<>//
   public void draw() {
     // Nettoyer l'écran
     clear();
-    
+
     // Dessiner le fond
     background.renderedPosition = background.position.sub(this.position);
     background.draw();
@@ -30,17 +30,16 @@ public class Camera { //<>// //<>// //<>//
       //println(obj.renderedPosition + " / " + this.position);
       obj.draw();
     }
-    
+
     // Ajouter les objets de la queue
     renderedObjects.addAll(queuedObjects);
     queuedObjects.clear();
-    
   }
 
   // Vérifier si l'objet est visible par la caméra ou non
   // Inutile pour le moment
   public boolean isInBounds(RenderedObject obj) {
-    PVector topLeft = this.position.sub(new PVector(width/2, height/2)); //<>// //<>// //<>//
+    PVector topLeft = this.position.sub(new PVector(width/2, height/2)); //<>// //<>//
     PVector bottomRight = this.position.add(new PVector(width/2, height/2));
 
     boolean tooFarLeft = obj.renderedPosition.x < topLeft.x;

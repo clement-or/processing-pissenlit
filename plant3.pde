@@ -59,13 +59,12 @@ public class Plant3 extends RenderedObject {
   // il faudrait garder cette accélération (graphiquement super), tout en la rendant 
   // indépendante pour chaque fleur
 
-  Plant3(float pos_x,float pos_y) {
+  Plant3(float pos_x, float pos_y) {
     super();
     position.x = pos_x;
     position.y = pos_y;
     n_petals = (int) random(3, 6);
-
-
+    sop = new SeedOnPlant(0, 0, 0, 0);
 
     // ajustement de la position des pétales sur la tige selon leur nombre
     if (n_petals == 3) { 
@@ -118,6 +117,7 @@ public class Plant3 extends RenderedObject {
     right_petal5_scale_y = hauteur_rand5;
   }
 
+  SeedOnPlant sop;
 
   public void draw() {
 
@@ -141,10 +141,11 @@ public class Plant3 extends RenderedObject {
     line(renderedPosition.x, renderedPosition.y, renderedPosition.x, top_rightY);
 
     noStroke();
-    fill(noir);
-
-    fill(rouge);
-    circle(renderedPosition.x, 180, r_flwr4);   
+    //circle(renderedPosition.x, 180, r_flwr4);   
+    sop.position.x = position.x;
+    sop.position.y = 180;
+    sop.size = r_flwr4;
+    sop.max_size = 30;
 
     // dessin de "n" couples de pétales en fonction de la variable "n_petals" qui a une valeur random (int) entre 3 et 5
     // comme chaque pétale est une image, seules les valeurs de "scale" varient dans le temps pour animer la création des pétales

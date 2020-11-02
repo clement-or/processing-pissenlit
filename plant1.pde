@@ -1,14 +1,5 @@
 public class Plant1 extends RenderedObject {
 
-  Plant1(float pos_x, float pos_y) {
-    super();
-    position.x = pos_x;
-    position.y = pos_y;
-    sop = new SeedOnPlant(0, 0, 0);
-  }
-  
-  SeedOnPlant sop;
-
   float Xaxis = 600;         // coordonnées X de la tige de la fleur
   float top_rightY = 500;    // bout de la fleur 
   float stem_speed = 3;      // vitesse de pousse de la tige
@@ -65,16 +56,22 @@ public class Plant1 extends RenderedObject {
   float root4_y3;
   float root4_y4 = 100;
 
-  int n_roots = (int) random(1, 5);
+  int n_roots = (int) random(1, 5); // détermine le nombre de racines de la plante
+  int pos_seed_on_plant = (int) random(1, 5); // détermine la position de la graine rouge qui, une fois soufflée, génère de nouvelles graines
 
   int opacity1 = 0;
   int opacity2 = 0;
   int opacity3 = 0;
   int opacity4 = 0;
 
-  // 
-  // 
-  // 
+  Plant1(float pos_x, float pos_y) {
+    super();
+    position.x = pos_x;
+    position.y = pos_y;
+    sop = new SeedOnPlant(0, 0, 0, 0);
+  }
+
+  SeedOnPlant sop;
 
   public void draw() {
 
@@ -114,16 +111,54 @@ public class Plant1 extends RenderedObject {
     line(renderedPosition.x, height-niv_sol, renderedPosition.x, top_rightY);
     noStroke();
 
-    fill(noir);
-    circle(renderedPosition.x+27, 360, r_flwr1);
-    //circle(renderedPosition.x-27, 300, r_flwr2);
-    sop.position.x = position.x - 27;
-    sop.position.y = 300;
-    sop.size = r_flwr2;
-    circle(renderedPosition.x+27, 240, r_flwr3);
+    if (pos_seed_on_plant == 1) {
+      fill(noir);
+      //circle(renderedPosition.x+27, 360, r_flwr1);
+      sop.position.x = position.x +27;
+      sop.position.y = 360;
+      sop.size = r_flwr1;
+      sop.max_size = 50;
+      circle(renderedPosition.x-27, 300, r_flwr2);
+      circle(renderedPosition.x+27, 240, r_flwr3);
+      circle(renderedPosition.x, 180, r_flwr4);
+    }
 
-    fill(rouge);
-    circle(renderedPosition.x, 180, r_flwr4);
+    if (pos_seed_on_plant == 2) {
+      fill(noir);
+      circle(renderedPosition.x+27, 360, r_flwr1);
+      //circle(renderedPosition.x-27, 300, r_flwr2);
+      sop.position.x = position.x - 27;
+      sop.position.y = 300;
+      sop.size = r_flwr2;
+      sop.max_size = 50;
+      circle(renderedPosition.x+27, 240, r_flwr3);
+      circle(renderedPosition.x, 180, r_flwr4);
+    }
+
+    if (pos_seed_on_plant == 3) {
+      fill(noir);
+      circle(renderedPosition.x+27, 360, r_flwr1);
+      circle(renderedPosition.x-27, 300, r_flwr2);
+      //circle(renderedPosition.x+27, 240, r_flwr3);
+      sop.position.x = position.x+27;
+      sop.position.y = 240;
+      sop.size = r_flwr3;
+      sop.max_size = 50;
+      circle(renderedPosition.x, 180, r_flwr4);
+    }
+
+    if (pos_seed_on_plant == 4) {
+      fill(noir);
+      circle(renderedPosition.x+27, 360, r_flwr1);
+      circle(renderedPosition.x-27, 300, r_flwr2);
+      circle(renderedPosition.x+27, 240, r_flwr3);
+      //circle(renderedPosition.x, 180, r_flwr4);
+      sop.position.x = position.x;
+      sop.position.y = 180;
+      sop.size = r_flwr4;
+      sop.max_size = 30;
+    }
+
 
     if (top_rightY > 170) { // à partir d'une certaine hauteur de tige, création des pétales et apparition des racines
       if ((top_rightY < 425) && (r_flwr1 < 50)) {

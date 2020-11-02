@@ -1,7 +1,7 @@
 public class SeedOnPlant extends RenderedObject {
-  
+
   public float rayon;
-  
+
   float gravity = 5;    // vitesse de chute
   float size = 0;      // rayon de la graine
   float max_size = 25;
@@ -13,12 +13,12 @@ public class SeedOnPlant extends RenderedObject {
 
   color seed_on_plant = lerpColor(rouge, noir, amount);
 
-  SeedOnPlant(float pos_x, float pos_y, float r_seed) {
+  SeedOnPlant(float pos_x, float pos_y, float r_seed, float r_max_seed) {
     super();
     position.x = pos_x;
     position.y = pos_y;
     this.size = r_seed;
-    
+    this.max_size = r_max_seed;
   }
 
   private void physics() {
@@ -35,49 +35,37 @@ public class SeedOnPlant extends RenderedObject {
   }
 
   public void draw() {
-    // Si la graine a déjà été plantée, on ne fait rien
 
-    if ((is_blowed == true) & (size >= max_size)) {
+    if ((is_blowed == true) && (size >= max_size)){
       if ((amount >= 0.09) & (amount <= 0.1)) {
         new Seed(position.x, position.y);
       }
 
       if ((amount >= 0.19) & (amount <= 0.2)) {
         new Seed(position.x, position.y);
-        new Seed(position.x, position.y);
       }
 
       if ((amount >= 0.29) & (amount <= 0.3)) {
-        new Seed(position.x, position.y);
         new Seed(position.x, position.y);
       }
 
       if ((amount >= 0.39) & (amount <= 0.4)) {
         new Seed(position.x, position.y);
-        new Seed(position.x, position.y);
       }
 
       if ((amount >= 0.49) & (amount <= 0.5)) {
-        new Seed(position.x, position.y);
-        new Seed(position.x, position.y);
         new Seed(position.x, position.y);
       }
 
       if ((amount >= 0.59) & (amount <= 0.6)) {
         new Seed(position.x, position.y);
-        new Seed(position.x, position.y);
-        new Seed(position.x, position.y);
-        new Seed(position.x, position.y);
       }
 
       if ((amount >= 0.69) & (amount <= 0.7)) {
         new Seed(position.x, position.y);
-        new Seed(position.x, position.y);
-        new Seed(position.x, position.y);
       }
 
       if ((amount >= 0.79) & (amount <= 0.8)) {
-        new Seed(position.x, position.y);
         new Seed(position.x, position.y);
       }
 
@@ -91,9 +79,9 @@ public class SeedOnPlant extends RenderedObject {
     /*println("vol : ", vol*50);
      println("is_blowed : ", is_blowed);
      println("amount : ", amount);*/
-      if (size < max_size) {
-        size += 0.2;
-      }
+    if (size < max_size) {
+      size += 0.2;
+    }
     // Après, on affiche la graine
     fill(seed_on_plant);
     noStroke();
