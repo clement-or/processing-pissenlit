@@ -4,6 +4,7 @@ public class Plant1 extends RenderedObject {
     super();
     position.x = pos_x;
     position.y = pos_y;
+    SeedOnPlant seed_blow = new SeedOnPlant(1, 1, 2);
   }
 
   float Xaxis = 600;         // coordonnées X de la tige de la fleur

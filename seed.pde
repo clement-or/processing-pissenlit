@@ -1,11 +1,12 @@
 public class Seed extends RenderedObject {
 
-  float gravity = 5;    // vitesse de chute
-  float size = 10;      // rayon de la graine
+  float gravity = random(1.7,2.2);    // vitesse de chute
+  float size = random(5, 10);      // rayon de la graine
   float vol;        // analyse de l'amplitude stockée dans vol
-  float push_ratio_x = 50; // ratio arbitraire qui gère la poussée du souffle
-  float push_ratio_y = 50;
+  float push_ratio_x = random(1500, 2000); // ratio arbitraire qui gère la poussée du souffle
+  float push_ratio_y = random(1000, 1200);
   boolean is_planted = false; // Est-ce que la graine a été plantée ?
+  float player_blow_intensity = 0.15;
 
   Seed(float pos_x, float pos_y) {
     super();

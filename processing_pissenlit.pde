@@ -29,10 +29,19 @@ void setup() {
   // Création des objets du jeu, temporaire
   // On aura plus tard une classe qui gérera ça
   new Camera();
+<<<<<<< Updated upstream
   //new Plant1(600, 500);
   //new Plant2(900, 500);
   //new Seed(600, 100);
   //Plant5(300, 500);
+=======
+  //new Plant1(750, 500);
+  //new Plant2(500, 500);
+  //new Seed(600, 100);
+  //new Seed_on_plant(200, 200);
+  //new Plant5(250, 500);
+  //new Plant3 (1000, 500);
+>>>>>>> Stashed changes
   //Plant_start(600, 500);
   new Intro(600, -50);
   //Plant_start(600, 500);
@@ -73,8 +82,8 @@ public color noir = color(0);
 
 // Fonction "globale" qui ne devrait pas exister mais Processing fait comme ça
 public RenderedObject createRandomPlant(float x, float y) {
-  int rnd = (int)random(0, 3);
-  //int rnd = 2;
+  //int rnd = (int)random(0, 4);
+  int rnd = 0;
   RenderedObject r = null;
 
   switch (rnd) {

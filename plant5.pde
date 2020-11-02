@@ -43,9 +43,9 @@ public class Plant5 extends RenderedObject {
     fill(rouge);
     circle(renderedPosition.x, hauteur_tige - 32, r_flwr4);
 
-    println("hauteur_tige :", hauteur_tige);
+    /*println("hauteur_tige :", hauteur_tige);
     println("top_rightY :", top_rightY);
-    println("deg1 :", deg1);
+    println("deg1 :", deg1);*/
 
     if (top_rightY > hauteur_tige) {     // croissance de la tige
       top_rightY -= stem_speed;

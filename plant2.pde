@@ -36,12 +36,9 @@ public class Plant2 extends RenderedObject {
 
   public void draw() {
 
-    //println("needInit :", needInit);
 
-    println("Xaxis:", Xaxis);
 
     while (needInit == true) {
-      println("needInit :", needInit);
       anch1_x = renderedPosition.x;
       anch1_y = renderedPosition.y;
       bez1_x = renderedPosition.x;
@@ -52,18 +49,7 @@ public class Plant2 extends RenderedObject {
       needInit = false;
     }
 
-
-
-    //println("needInit :", needInit);
-
-    println("anch1 :", anch1_x, ",", anch1_y);
-    println("bez1 :", bez1_x, ",", bez1_y);
-    println("bez2 :", bez2_x, ",", bez2_y);
-    println("renderedPosition :", renderedPosition.x, ",", renderedPosition.y);
-
-
     flower_timer += flower_speed;
-    //println(flower_timer);
 
     strokeWeight(3); 
     noFill();
@@ -148,7 +134,5 @@ public class Plant2 extends RenderedObject {
       bez2_x = renderedPosition.x;
       bez2_y = renderedPosition.y-114.75;
     }
-    
-    println("grow_plant2 :", grow_plant2);
   }
 }
