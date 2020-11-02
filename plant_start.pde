@@ -49,7 +49,6 @@ public class Plant_start extends RenderedObject {
     petale_start_mirror = loadImage("petale_start_mirror.png");
     
     seedOnPlant = new SeedOnPlant(0, 0, 0);
-    seedOnPlant.disabled = true;
   }
 
   public void draw() {
@@ -67,12 +66,7 @@ public class Plant_start extends RenderedObject {
 
     seedOnPlant.position.x = position.x;
     seedOnPlant.position.y = 180;
-    
-    if(anim_grow_shrink) {
-      seedOnPlant.size = radius_seed1;
-    } else {
-      seedOnPlant.size = r_flwr2 - 10;
-    }
+    seedOnPlant.size = radius_seed1;
     
     
 

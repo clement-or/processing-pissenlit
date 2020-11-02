@@ -33,7 +33,7 @@ void setup() {
   //new Plant2(900, 500);
   //new Seed(600, 100);
   //Plant5(300, 500);
-  //new Plant1(750, 500);
+  new Plant1(750, 500);
   //new Plant2(500, 500);
   //new Seed(600, 100);
   //new Seed_on_plant(200, 200);

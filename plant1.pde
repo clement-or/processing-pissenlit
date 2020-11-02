@@ -4,8 +4,10 @@ public class Plant1 extends RenderedObject {
     super();
     position.x = pos_x;
     position.y = pos_y;
-    SeedOnPlant seed_blow = new SeedOnPlant(1, 1, 2);
+    sop = new SeedOnPlant(0, 0, 0);
   }
+  
+  SeedOnPlant sop;
 
   float Xaxis = 600;         // coordonnées X de la tige de la fleur
   float top_rightY = 500;    // bout de la fleur 
@@ -114,7 +116,10 @@ public class Plant1 extends RenderedObject {
 
     fill(noir);
     circle(renderedPosition.x+27, 360, r_flwr1);
-    circle(renderedPosition.x-27, 300, r_flwr2);
+    //circle(renderedPosition.x-27, 300, r_flwr2);
+    sop.position.x = position.x - 27;
+    sop.position.y = 300;
+    sop.size = r_flwr2;
     circle(renderedPosition.x+27, 240, r_flwr3);
 
     fill(rouge);
