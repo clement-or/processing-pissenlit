@@ -10,6 +10,7 @@ public class SeedOnPlant extends RenderedObject {
   boolean is_blowed = false; // Est-ce que la graine a été soufflée dessus ?
   float player_blow_intensity = 0.15;
   float amount = 0;
+  boolean disabled = false;
 
   color seed_on_plant = lerpColor(rouge, noir, amount);
 
@@ -17,11 +18,13 @@ public class SeedOnPlant extends RenderedObject {
     super();
     position.x = pos_x;
     position.y = pos_y;
-    this.rayon = r_seed;
+    this.size = r_seed;
     
   }
 
   private void physics() {
+    if (disabled) return;
+    
     vol = amp.analyze();
 
     if (vol*50 > player_blow_intensity) {    
@@ -90,9 +93,11 @@ public class SeedOnPlant extends RenderedObject {
     /*println("vol : ", vol*50);
      println("is_blowed : ", is_blowed);
      println("amount : ", amount);*/
-    if (size < max_size) {
-      size += 0.2;
-    }
+     if (!disabled) {
+      if (size < max_size) {
+        size += 0.2;
+      }
+     }
     // Après, on affiche la graine
     fill(seed_on_plant);
     noStroke();

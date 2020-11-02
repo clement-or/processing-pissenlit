@@ -3,14 +3,6 @@ PImage petale_start_mirror;
 
 public class Plant_start extends RenderedObject {
 
-  Plant_start(float pos_x, float pos_y) {
-    super();
-    position.x = pos_x;
-    position.y = pos_y;
-    petale_start = loadImage("petale_start.png");
-    petale_start_mirror = loadImage("petale_start_mirror.png");
-  }
-
   float top_rightY = 500;    // bout de la fleur 
   float stem_speed = 3;      // vitesse de pousse de la tige
 
@@ -43,9 +35,22 @@ public class Plant_start extends RenderedObject {
   float petal_scale_y; // scaling Y de la pétale de droite
   float petal_scale_x_mirror; // scaling X de la pétale de gauche
   float petal_scale_y_mirror; // scaling Y de la pétale de gauche
+  
+  SeedOnPlant seedOnPlant;
 
   boolean open = false; // quand open = true, la fleur s'ouvre
   
+
+  Plant_start(float pos_x, float pos_y) {
+    super();
+    position.x = pos_x;
+    position.y = pos_y;
+    petale_start = loadImage("petale_start.png");
+    petale_start_mirror = loadImage("petale_start_mirror.png");
+    
+    seedOnPlant = new SeedOnPlant(0, 0, 0);
+    seedOnPlant.disabled = true;
+  }
 
   public void draw() {
 
@@ -60,8 +65,16 @@ public class Plant_start extends RenderedObject {
     fill(noir);
     circle(renderedPosition.x, 180, r_flwr2); // dessin de la graine noire
 
-    fill(rouge);
-    circle(renderedPosition.x, 180, radius_seed1); // dessin de la graine rouge
+    seedOnPlant.position.x = position.x;
+    seedOnPlant.position.y = 180;
+    
+    if(anim_grow_shrink) {
+      seedOnPlant.size = radius_seed1;
+    } else {
+      seedOnPlant.size = r_flwr2 - 10;
+    }
+    
+    
 
 
 
