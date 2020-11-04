@@ -15,7 +15,7 @@ void setup() {
 
   // Création des objets du jeu, temporaire
   // On aura plus tard une classe qui gérera ça
-  new Camera();
+  new CameraFollow();
   //new Plant1(600, 500);
   //new Plant_start(600, 500);
   new Intro(600, -50);
@@ -28,37 +28,4 @@ void setup() {
 // Afficher les éléments du jeu via la Camera
 void draw() {
   CameraManager.current.draw();
-}
-
-void keyPressed() {
-  int x = (keyCode == RIGHT ? 1 : 0) - (keyCode == LEFT ? 1 : 0);
-  int y = (keyCode == DOWN ? 1 : 0) - (keyCode == UP ? 1 : 0);
-  CameraManager.current.position.add(new PVector(x, y));
-}
-
-// Fonction "globale" qui ne devrait pas exister mais Processing fait comme ça
-public RenderedObject createRandomPlant(float x, float y) {
-  int rnd = (int)random(0, 4);
-  //int rnd = 3;
-  RenderedObject r = null;
-
-  switch (rnd) {
-  case 0:
-    r = new Plant1(x, y);
-    break;
-
-  case 1:
-    r = new Plant5(x, y);
-    break;
-
-  case 2:
-    r = new Plant2(x, y);
-    break;
-
-  case 3:
-    r = new Plant3(x, y);
-    break;
-  }
-
-  return r != null ? r : null;
 }

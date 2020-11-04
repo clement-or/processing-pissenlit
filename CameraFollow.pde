@@ -14,7 +14,7 @@ public class CameraFollow extends Camera {
     super.draw();
     
      targetObj = SeedManager.getFurthestSeed();
-     print(SeedManager.getFurthestSeed());
+     //print(SeedManager.getFurthestSeed());
     
     // Get the target object position
     if (targetObj != null)
