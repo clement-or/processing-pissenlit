@@ -36,12 +36,6 @@ public class Plant_start extends RenderedObject {
   float petal_scale_x_mirror; // scaling X de la pétale de gauche
   float petal_scale_y_mirror; // scaling Y de la pétale de gauche
 
-  /*
-  float icones_timer =s 3;
-   int icones_scale_x = 600;
-   int icones_scale_y = 50;
-   */
-
   boolean open = false; // quand open = true, la fleur s'ouvre
   boolean icones = true;
 
@@ -118,6 +112,7 @@ public class Plant_start extends RenderedObject {
     if (m >= 11000 && icones) {
       new Icones(renderedPosition.x, 50);
       icones = false;
+      
   }
 
   if (top_rightY > 200) { // tant que la hauteur de la tige n'atteint pas y = 200, pousse de la tige

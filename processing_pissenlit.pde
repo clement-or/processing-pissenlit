@@ -21,6 +21,7 @@ void setup() {
   new Intro(600, -50);
   //new Icones(600,50);
   //Plant_start(600, 500);
+  new Musique(this);
 
 }
 
