@@ -58,4 +58,27 @@ public static class SeedManager {
   public static void add(Seed s) {
     seeds.add(s);
   }
+  
+  public static void remove(Seed s) {
+    for (int i = seeds.size() - 1; i >= 0; i--) {
+      Seed seed = seeds.get(i);
+      if (seed.equals(s))
+        seeds.remove(i);
+    }
+  }
+  
+  public static Seed getFurthestSeed() {
+    int prevX = 0;
+    Seed returnSeed;
+    
+    for (int i = 0; i < seeds.size(); i++) {
+      Seed seed = seeds.get(i);
+      if (seed.position.x > prevX) {
+        returnSeed = seed;
+        prevX = (int)seed.position.x;
+      }
+    }
+    
+    return returnSeed != null ? returnSeed : seeds.get(0);
+  }
 }
