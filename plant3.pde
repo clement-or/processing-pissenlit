@@ -6,7 +6,7 @@ public class Plant3 extends RenderedObject {
   float top_rightY = 500;    // bout de la fleur 
   float stem_speed = 4;    // vitesse de pousse de la tige
 
-  float r_flwr4 = 0;
+  float r_flwr4;
 
   float flower_timer = 0;    // init
   float flower_speed = 0.05; // vitesse de pousse des fleurs
@@ -149,7 +149,7 @@ public class Plant3 extends RenderedObject {
     sop.position.x = position.x;
     sop.position.y = 180;
     sop.size = r_flwr4;
-    sop.max_size = 30;
+    sop.max_size = 25;
 
     // dessin de "n" couples de pétales en fonction de la variable "n_petals" qui a une valeur random (int) entre 3 et 5
     // comme chaque pétale est une image, seules les valeurs de "scale" varient dans le temps pour animer la création des pétales
@@ -189,7 +189,7 @@ public class Plant3 extends RenderedObject {
       if ((top_rightY < 200) && (r_flwr4 < 30)) { // pétale au sommet
         r_flwr4 += flower_timer;
       }
-
+      
 
 
       top_rightY -= stem_speed;  
