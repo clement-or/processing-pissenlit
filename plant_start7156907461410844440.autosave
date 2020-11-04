@@ -35,15 +35,14 @@ public class Plant_start extends RenderedObject {
   float petal_scale_y; // scaling Y de la pétale de droite
   float petal_scale_x_mirror; // scaling X de la pétale de gauche
   float petal_scale_y_mirror; // scaling Y de la pétale de gauche
-
+  
   /*
-  float icones_timer =s 3;
-   int icones_scale_x = 600;
-   int icones_scale_y = 50;
-   */
+  float icones_timer = 3;
+  int icones_scale_x = 600;
+  int icones_scale_y = 50;
+  */
 
   boolean open = false; // quand open = true, la fleur s'ouvre
-  boolean icones = true;
 
 
   Plant_start(float pos_x, float pos_y) {
@@ -115,57 +114,53 @@ public class Plant_start extends RenderedObject {
       open = true;
     }
 
-    if (m >= 11000 && icones) {
-      new Icones(renderedPosition.x, 50);
-      icones = false;
-  }
-
-  if (top_rightY > 200) { // tant que la hauteur de la tige n'atteint pas y = 200, pousse de la tige
-    top_rightY -= stem_speed;
-  }
-
-  if (top_rightY <= 200) {
-    top_rightY = 200;
-  }
-
-
-  if (top_rightY == 200) { // animation des graines au sommet une fois la tige à hauteur maximale
-    top_rightY = 200;
-    //anim_grow_shrink = true;
-    if (r_flwr1 <= 25) {
-      r_flwr1 += 0.6;
+    if (top_rightY > 200) { // tant que la hauteur de la tige n'atteint pas y = 200, pousse de la tige
+      top_rightY -= stem_speed;
     }
 
-    if (r_flwr2 <= 50) {
-      r_flwr2 += 0.9;
+    if (top_rightY <= 200) {
+      top_rightY = 200;
+    }
+
+
+    if (top_rightY == 200) { // animation des graines au sommet une fois la tige à hauteur maximale
+      top_rightY = 200;
+      //anim_grow_shrink = true;
+      if (r_flwr1 <= 25) {
+        r_flwr1 += 0.6;
+      }
+
+      if (r_flwr2 <= 50) {
+        r_flwr2 += 0.9;
+      }
+    }
+
+    if (anim_grow_shrink == true) { // animation de clignotement de la graine rouge
+      radius_seed1 = map(sin(angle1), -1, 1, min_r_seed1, max_r_seed1);
+      Icones(600,50); 
+    }
+
+    angle1 +=da;
+
+    // Animation de pousse des pétales (de scale = 0 à état fermé)
+    if ((top_rightY < 310) & (petal_scale_x <= img_petale_width)) {
+      petal_scale_x += flower_timer/8;
+    }
+
+    if ((top_rightY < 310) & (petal_scale_y >= -img_petale_height)) {
+      petal_scale_y -= flower_timer/1.3;
+    }
+
+    if ((top_rightY < 310) & (petal_scale_x_mirror >= -img_petale_width)) {
+      petal_scale_x_mirror -= flower_timer/8;
+    }
+
+    if ((top_rightY < 310) & (petal_scale_y_mirror >= -img_petale_height)) {
+      petal_scale_y_mirror -= flower_timer/1.3;
+    }
+
+    if ((petal_scale_y_mirror <= -img_petale_height) & (petal_scale_y <= -img_petale_height)) { // déclenchement du clignotement de la graine rouge
+      anim_grow_shrink = true;
     }
   }
-
-  if (anim_grow_shrink == true) { // animation de clignotement de la graine rouge
-    radius_seed1 = map(sin(angle1), -1, 1, min_r_seed1, max_r_seed1);
-  }
-
-  angle1 +=da;
-
-  // Animation de pousse des pétales (de scale = 0 à état fermé)
-  if ((top_rightY < 310) & (petal_scale_x <= img_petale_width)) {
-    petal_scale_x += flower_timer/8;
-  }
-
-  if ((top_rightY < 310) & (petal_scale_y >= -img_petale_height)) {
-    petal_scale_y -= flower_timer/1.3;
-  }
-
-  if ((top_rightY < 310) & (petal_scale_x_mirror >= -img_petale_width)) {
-    petal_scale_x_mirror -= flower_timer/8;
-  }
-
-  if ((top_rightY < 310) & (petal_scale_y_mirror >= -img_petale_height)) {
-    petal_scale_y_mirror -= flower_timer/1.3;
-  }
-
-  if ((petal_scale_y_mirror <= -img_petale_height) & (petal_scale_y <= -img_petale_height)) { // déclenchement du clignotement de la graine rouge
-    anim_grow_shrink = true;
-  }
-}
 }

@@ -17,9 +17,9 @@ void setup() {
   // On aura plus tard une classe qui gérera ça
   new Camera();
   //new Plant1(600, 500);
-  //Plant_start(600, 500);
+  //new Plant_start(600, 500);
   new Intro(600, -50);
-  new Icones(600,50);
+  //new Icones(600,50);
   //Plant_start(600, 500);
 
 }
