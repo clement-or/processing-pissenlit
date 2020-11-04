@@ -12,6 +12,7 @@ public class Seed extends RenderedObject {
     super();
     position.x = pos_x;
     position.y = pos_y;
+    SeedManager.add(this);
   }
 
   private void physics() {
@@ -41,5 +42,13 @@ public class Seed extends RenderedObject {
     fill(noir);
     noStroke();
     circle(renderedPosition.x, renderedPosition.y, size);   // dessin graine
+  }
+}
+
+public static class SeedManager {
+  public static ArrayList<Seed> seeds = new ArrayList<Seed>();
+  
+  public static void add(Seed s) {
+    seeds.add(s);
   }
 }
