@@ -13,6 +13,9 @@ public class CameraFollow extends Camera {
   public void draw() {
     super.draw();
     
+     targetObj = SeedManager.getFurthestSeed();
+     print(SeedManager.getFurthestSeed());
+    
     // Get the target object position
     if (targetObj != null)
       targetPos = targetObj.position;
@@ -22,7 +25,6 @@ public class CameraFollow extends Camera {
         int dx = (int)(targetPos.x - (position.x + width/2));
         position.x = dx * 0.05;
       }
-      
   }
   
   

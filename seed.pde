@@ -69,7 +69,8 @@ public static class SeedManager {
   
   public static Seed getFurthestSeed() {
     int prevX = 0;
-    Seed returnSeed;
+      //if (seeds.size() > 0)
+    Seed returnSeed = seeds.get(0);
     
     for (int i = 0; i < seeds.size(); i++) {
       Seed seed = seeds.get(i);
@@ -79,6 +80,6 @@ public static class SeedManager {
       }
     }
     
-    return returnSeed != null ? returnSeed : seeds.get(0);
+    return returnSeed;
   }
 }
