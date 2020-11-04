@@ -124,6 +124,7 @@ public class Plant3 extends RenderedObject {
 
   public void draw() {
 
+    imageMode(CORNERS);
     flower_timer += flower_speed;
 
     //println("position.x : ",renderedPosition.x);

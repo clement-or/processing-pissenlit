@@ -38,7 +38,7 @@ void keyPressed() {
 // Fonction "globale" qui ne devrait pas exister mais Processing fait comme ça
 public RenderedObject createRandomPlant(float x, float y) {
   int rnd = (int)random(0, 4);
-  //int rnd = 0;
+  //rnd = 3;
   RenderedObject r = null;
 
   switch (rnd) {
