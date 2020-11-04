@@ -28,7 +28,8 @@ public class Camera { //<>// //<>// //<>// //<>// //<>// //<>//
     for (RenderedObject obj : renderedObjects) {                                                                                                                                                                                                                          
       obj.renderedPosition = obj.position.sub(this.position);
       //println(obj.renderedPosition + " / " + this.position);
-      obj.draw();
+      if (isInBounds(obj))
+        obj.draw();
     }
 
     // Ajouter les objets de la queue
@@ -39,15 +40,7 @@ public class Camera { //<>// //<>// //<>// //<>// //<>// //<>//
   // Vérifier si l'objet est visible par la caméra ou non
   // Inutile pour le moment
   public boolean isInBounds(RenderedObject obj) {
-    PVector topLeft = this.position.sub(new PVector(width/2, height/2)); //<>// //<>//
-    PVector bottomRight = this.position.add(new PVector(width/2, height/2));
-
-    boolean tooFarLeft = obj.renderedPosition.x < topLeft.x;
-    boolean tooFarUp = obj.renderedPosition.y < topLeft.y;
-    boolean tooFarRight = obj.renderedPosition.x > bottomRight.x;
-    boolean tooFarDown = obj.renderedPosition.y > bottomRight.y;
-
-    return tooFarLeft || tooFarUp || tooFarRight || tooFarDown;
+    return obj.renderedPosition.x >= 0; //<>//
   }
 
   // Ajouter un objet aux objets que la caméra va dessiner

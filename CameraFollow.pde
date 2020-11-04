@@ -1,31 +1,35 @@
 public class CameraFollow extends Camera {
-
-  RenderedObject target;
-  float followMargin = 5;
-  float speed = 2;
-  float cameraShakeScale = 1;
-
-
+  public float speed = 1;
+  public int followMargin = 1;
+  
+  public RenderedObject targetObj;
+  public PVector targetPos;
+  private PVector oldTargetPos = new PVector(0,0);
+  
   CameraFollow() {
     super();
   }
-
+  
   public void draw() {
     super.draw();
-    doMovement();
+    
+    // Get the target object position
+    if (targetObj != null)
+      targetPos = targetObj.position;
+    
+    if (targetPos != null)
+      if (!isNear(targetPos)) {
+        int dx = (int)(targetPos.x - (position.x + width/2));
+        position.x = dx * 0.05;
+      }
+      
   }
-
-  private void doMovement() {
-    // Si la caméra est trop loin de sa cible, se rapprocher
-    if (!isNearTarget() || true) {
-      PVector tPos = new PVector(target.position.x, target.position.y);
-      PVector newPos = tPos.sub(new PVector(width/2, height/2));
-      //this.position = newPos;
-      this.position = PVector.lerp(this.position, newPos, .1);
-    }
-  }
-
-  private boolean isNearTarget() {
-    return target != null ? target.position.sub(this.position).mag() < this.followMargin : true;
+  
+  
+  
+  private boolean isNear(PVector pos) {
+    int center = round(position.x + width/2);
+    int dist = (int)abs(targetPos.x - center);
+    return dist < followMargin;
   }
 }
