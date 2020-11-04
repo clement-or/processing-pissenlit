@@ -2,10 +2,10 @@ public class SeedOnPlant extends RenderedObject {
 
   public float rayon;
 
-  float gravity = 5;    // vitesse de chute
-  float size = 0;      // rayon de la graine
+  float gravity = 5;      // vitesse de chute
+  float size = 0;         // rayon de la graine
   float max_size = 25;
-  float vol;        // analyse de l'amplitude stockée dans vol
+  float vol;              // analyse de l'amplitude stockée dans vol
 
   boolean is_blowed = false; // Est-ce que la graine a été soufflée dessus ?
   float player_blow_intensity = 0.15;
@@ -36,7 +36,7 @@ public class SeedOnPlant extends RenderedObject {
 
   public void draw() {
 
-    if ((is_blowed == true) && (size >= max_size)){
+    if ((is_blowed == true) && (size >= max_size)) {
       if ((amount >= 0.09) & (amount <= 0.1)) {
         new Seed(position.x, position.y);
       }
@@ -66,7 +66,8 @@ public class SeedOnPlant extends RenderedObject {
       }
 
       if ((amount >= 0.79) & (amount <= 0.8)) {
-        new Seed(position.x, position.y);
+        Seed graineFertile = new Seed(position.x, position.y);
+        graineFertile.isFertile = true;
       }
 
       amount += 0.02;
@@ -76,9 +77,6 @@ public class SeedOnPlant extends RenderedObject {
     // D'abord on calcule la physique
     physics();
 
-    /*println("vol : ", vol*50);
-     println("is_blowed : ", is_blowed);
-     println("amount : ", amount);*/
     if (size < max_size) {
       size += 0.2;
     }

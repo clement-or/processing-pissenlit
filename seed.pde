@@ -1,11 +1,15 @@
 public class Seed extends RenderedObject {
 
-  float gravity = random(1.7, 2.2);    // vitesse de chute
-  float size = random(5, 10);      // rayon de la graine
-  float vol;        // analyse de l'amplitude stockée dans vol
-  float push_ratio_x = random(1500, 2000); // ratio arbitraire qui gère la poussée du souffle
-  float push_ratio_y = random(1000, 1200);
-  boolean is_planted = false; // Est-ce que la graine a été plantée ?
+  float gravity = random(1.7, 2.2);          // vitesse de chute
+  float size = random(5, 10);                // rayon de la graine
+  float vol;                                 // analyse de l'amplitude stockée dans vol
+  float push_ratio_x = random(30, 70);       // ratio arbitraire qui gère la poussée du souffle... souci de sensi des micros selon le matériel et l'environnement
+  float push_ratio_y = random(30, 70);
+  boolean is_planted = false;                // Est-ce que la graine a été plantée ?
+  
+  boolean isFertile = false;                 // une graine isFertile pousse obligatoirement
+  int growProb = 10;                         // 1/growProb = prob de pousser d'une graine non fertile
+  
   float player_blow_intensity = 0.15;
 
   Seed(float pos_x, float pos_y) {
@@ -27,7 +31,10 @@ public class Seed extends RenderedObject {
 
     if (position.y >= height-niv_sol+size && !is_planted) {   // si touche sol, la plante pousse
       is_planted = true;
-      createRandomPlant(position.x, position.y);
+      int x = (int)random(growProb);
+      if (isFertile || x==0) {
+        createRandomPlant(position.x, position.y);
+      }
     }
   }
 
@@ -47,7 +54,7 @@ public class Seed extends RenderedObject {
 
 public static class SeedManager {
   public static ArrayList<Seed> seeds = new ArrayList<Seed>();
-  
+
   public static void add(Seed s) {
     seeds.add(s);
   }
