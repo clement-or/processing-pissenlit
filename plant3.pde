@@ -1,5 +1,8 @@
 public class Plant3 extends RenderedObject {
 
+  PImage plant3_petale = loadImage("plant3_petale.png");
+  PImage plant3_petale_mirror = loadImage("plant3_petale_mirror.png");
+
   float top_rightY = 500;    // bout de la fleur 
   float stem_speed = 4;    // vitesse de pousse de la tige
 
