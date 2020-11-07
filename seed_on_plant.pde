@@ -5,10 +5,8 @@ public class SeedOnPlant extends RenderedObject {
   float gravity = 5;      // vitesse de chute
   float size = 0;         // rayon de la graine
   float max_size = 25;
-  float vol;              // analyse de l'amplitude stockée dans vol
 
-  boolean is_blowed = false; // Est-ce que la graine a été soufflée dessus ?
-  float player_blow_intensity = 0.15;
+  boolean hasBeenBlown = false; // Est-ce que la graine a été soufflée dessus ?
   int amount = 0;
   int maxSeeds = 10;
   int minSeeds = 5;
@@ -24,21 +22,12 @@ public class SeedOnPlant extends RenderedObject {
   }
 
   private void physics() {
-
-    vol = amp.analyze();
-
-    if (vol*50 > player_blow_intensity) {    
-      is_blowed = true;
-    }
-
-    if (vol*50 < player_blow_intensity) {    
-      is_blowed = false;
-    }
+    hasBeenBlown = Mic.isBlowing() || hasBeenBlown;
   }
 
   public void draw() {
 
-    if ((is_blowed == true) && (size >= max_size)) {
+    if ((hasBeenBlown == true) && (size >= max_size)) {
       if (amount <= 80 && amount%10 == 0) {
         new Seed(position.x, position.y);
       }

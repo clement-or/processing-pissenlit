@@ -2,15 +2,11 @@ public class Seed extends RenderedObject {
 
   float gravity = random(1.7, 2.2);          // vitesse de chute
   float size = random(5, 10);                // rayon de la graine
-  float vol;                                 // analyse de l'amplitude stockée dans vol
-  float push_ratio_x = random(30, 70);       // ratio arbitraire qui gère la poussée du souffle... souci de sensi des micros selon le matériel et l'environnement
-  float push_ratio_y = random(30, 70);
+  PVector speedMultiplier = new PVector(random(30, 70), random(30, 70));  // Remplace push_ratio_x et y
   boolean is_planted = false;                // Est-ce que la graine a été plantée ?
   
   boolean isFertile = true;                 // une graine isFertile pousse obligatoirement
   float growProb = 0.1;                         // Probabilité que la graine pousse
-  
-  float player_blow_intensity = 0.15;
 
   Seed(float pos_x, float pos_y) {
     super();
@@ -20,13 +16,14 @@ public class Seed extends RenderedObject {
   }
 
   private void physics() {
-    vol = amp.analyze();
-
     // Si graine au-dessus du sol, elle descend
     if (position.y < height-niv_sol+size) {    
       position.y += gravity;
-      position.x += push_ratio_x * vol;
-      position.y -= push_ratio_y * vol;
+      
+      float amplitude = Mic.getAmplitudeAbove();
+      
+      position.x += speedMultiplier.x * amplitude;
+      position.y -= speedMultiplier.y * amplitude;
     }
 
     if (position.y >= height-niv_sol+size && !is_planted) {   // si touche sol, la plante pousse
@@ -86,7 +83,7 @@ public static class SeedManager {
   public static int maxSeeds = 10;
 
   public static void add(Seed s) {
-    if (seeds.size() >= 15)
+    if (seeds.size() <= 15)
       seeds.add(s);
     else {
       s.isFertile = false;

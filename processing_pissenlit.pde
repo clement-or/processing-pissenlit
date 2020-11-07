@@ -11,14 +11,9 @@ public color noir = color(0);
 void setup() {
   frameRate(60);
   size(1200, 600);
-
-// init audio
-  mic = new AudioIn(this, 0);       // on n'utilise que le micro de gauche s'il y en a 2 
-  mic.start();                      // on allume le micro
-  amp = new Amplitude(this);
-  amp.input(mic);                   // on va chercher l'amplitude du mic
-
-// init scène
+  
+// init scène  
+  Mic.init(this);
   new CameraFollow();
   new Intro(600, -50);
   new Musique(this);

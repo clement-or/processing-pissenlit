@@ -30,6 +30,9 @@ public class Camera {  //<>//
       //println(obj.renderedPosition + " / " + this.position);
       if (isInBounds(obj))
         obj.draw();
+      else if (obj instanceof Seed) {
+        SeedManager.remove((Seed)obj);
+      }
     }
 
     // Ajouter les objets de la queue
