@@ -26,3 +26,61 @@ public static class Mic {
     return isBlowing() ? getAmplitude() : 0;
   }
 }
+
+
+public interface TimeoutCallback{
+  void onTimeout();
+}
+
+public class Timer extends RenderedObject {
+  public float waitTime = 1;
+  private float timeLeft = 1;
+  
+  public boolean oneShot = true;
+  public boolean autoStart = false;
+  public boolean paused = true;
+  
+  public TimeoutCallback timeoutCallback;
+  
+  private float startMillis;
+  
+  Timer(TimeoutCallback callback) {
+    super();
+    culling = false;
+    timeoutCallback = callback;
+    if (autoStart) Start();
+  }
+  
+  public void draw() {
+    if (paused) return; //<>//
+    
+    float elapsedTime = (millis() - startMillis)/1000;
+    timeLeft = waitTime - elapsedTime;
+    
+    if (timeLeft <= 0) {
+      Stop();
+      timeLeft = waitTime;
+      timeoutCallback.onTimeout();
+    }
+  }
+  
+  public void Start() {
+    if (!paused) return;
+    
+    startMillis = millis();
+    paused = false;
+    timeLeft = waitTime;
+  }
+  
+  public void Resume() {
+    if (!paused) return;
+    
+    paused = false;
+  }
+
+  public void Stop() {
+    if (paused) return;
+    
+    paused = true;
+  }
+}

@@ -1,6 +1,7 @@
 public class RenderedObject {
   public PVector position = new PVector(0, 0);
   public PVector renderedPosition = new PVector(0, 0);
+  public boolean culling = true;
 
   RenderedObject() {
     if (CameraManager.current != null)

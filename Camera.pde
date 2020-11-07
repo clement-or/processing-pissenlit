@@ -1,4 +1,4 @@
-public class Camera {  //<>//
+public class Camera { 
 
   // La position de la caméra dans le monde 2D
   public PVector position = new PVector(0, 0);
@@ -28,9 +28,10 @@ public class Camera {  //<>//
     for (RenderedObject obj : renderedObjects) {                                                                                                                                                                                                                          
       obj.renderedPosition = obj.position.sub(this.position);
       //println(obj.renderedPosition + " / " + this.position);
-      if (isInBounds(obj))
+      
+      if (!obj.culling || isInBounds(obj)) {
         obj.draw();
-      else if (obj instanceof Seed) {
+      } else if (obj instanceof Seed) {
         SeedManager.remove((Seed)obj);
       }
     }
@@ -43,7 +44,7 @@ public class Camera {  //<>//
   // Vérifier si l'objet est visible par la caméra ou non
   // Inutile pour le moment
   public boolean isInBounds(RenderedObject obj) {
-    return obj.renderedPosition.x >= 0;  //<>//
+    return obj.renderedPosition.x >= 0; 
   }
 
   // Ajouter un objet aux objets que la caméra va dessiner

@@ -101,7 +101,7 @@ public static class SeedManager {
   
   public static Seed getFurthestSeed() {
     int prevX = 0;
-    println(seeds.size());
+    //println(seeds.size());
     if (seeds.size() == 0) return null;
     Seed returnSeed = seeds.get(0);
     
