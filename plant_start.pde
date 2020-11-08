@@ -105,11 +105,11 @@ public class Plant_start extends RenderedObject {
 
     int m = millis();
 
-    if (m >= 7000) { // Ouverture de la fleur d'intro après 7 secondes de jeu
+    if (m >= 8000) { // Ouverture de la fleur d'intro après 7 secondes de jeu
       open = true;
     }
 
-    if (m >= 11000 && icones) {
+    if (m >= 29000 && icones) {
       new Icones(renderedPosition.x, 50);
       icones = false;
       
