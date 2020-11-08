@@ -1,5 +1,5 @@
 public static class Mic {
-  public static float blowThreshold = .1;
+  public static float blowThreshold = .18;
   
   public static AudioIn audioIn;
   public static Amplitude amplitude;
@@ -24,6 +24,32 @@ public static class Mic {
   // Renvoie l'amplitude si l'utilisateur souffle, ou zéro
   public static float getAmplitudeAbove() {
     return isBlowing() ? getAmplitude() : 0;
+  }
+  
+  public static ArrayList<Float> silenceSamples = new ArrayList<Float>();
+  public static void recordSilence() {
+    silenceSamples.add(amplitude.analyze());
+  }
+  
+  public static ArrayList<Float> blowSamples = new ArrayList<Float>();
+  public static void recordBlow() {
+    blowSamples.add(amplitude.analyze());
+  }
+  
+  public static void calibrate() {
+    float averageSilence = 0;
+    for (int i = 0; i < silenceSamples.size(); i++) {
+      averageSilence += silenceSamples.get(i);
+    }
+    averageSilence /= silenceSamples.size();
+    
+    float averageBlow = 0;
+    for (int i = 0; i < blowSamples.size(); i++) {
+      averageBlow += blowSamples.get(i);
+    }
+    averageBlow /= blowSamples.size();
+    
+    blowThreshold = (averageSilence + averageBlow) / 2;
   }
 }
 
@@ -52,7 +78,7 @@ public class Timer extends RenderedObject {
   }
   
   public void draw() {
-    if (paused) return; //<>//
+    if (paused) return;
     
     float elapsedTime = (millis() - startMillis)/1000;
     timeLeft = waitTime - elapsedTime;
@@ -132,12 +158,10 @@ public class Text extends RenderedObject {
   
   PFont font;
   String text;
-  color textColor = color(0, 0, 0);
+  color textColor = color(0, 0, 0, 0);
   float opacity = 0;
   float size;
-  float elapsedTime = 0;
   float textWidth;
-  public boolean fadeIn = true;
   
   public Text(String text, float size, float xPos, float yPos) {
     super();
@@ -149,22 +173,23 @@ public class Text extends RenderedObject {
     culling = false;
   }
   
+  public Text(String text, float size, float xPos, float yPos, float o) {
+    super();
+    opacity = o;
+    this.text = text;
+    font = createFont("Roboto-Thin.ttf", size);
+    position.x = xPos;
+    position.y = yPos;
+    textWidth = text.length() * size;
+    culling = false;
+  }
+  
   public void draw() {
-    elapsedTime += Time.deltaTime;
-    if (fadeIn)
-      opacity = EasingFunctions.easeInOutCubic(elapsedTime) * 10;
-    else
-      opacity = 255 - EasingFunctions.easeInOutCubic(elapsedTime) * 10; //<>//
-    opacity = constrain(opacity, 0, 255);
+    opacity = constrain(opacity, 0, 255); //<>//
     
     fill(color(red(textColor), green(textColor), blue(textColor), opacity));
     textFont(font);
     text(this.text, position.x - textWidth/4, position.y - size/2);
-  }
-  
-  public void fadeOut() {
-    elapsedTime = 0;
-    fadeIn = false;
   }
   
 }
@@ -242,26 +267,113 @@ public class MySeq extends TimedSequence {
     
     elements = new TimedElement[] {
       
+      new TimedElement() {
+        public void setup() { Timer t = new Timer(this); t.start(); }
+        public void update() {}
+        public void onTimeout() { nextElement();}
+      },
+      
+      new TimedElement () {
+        Text text;
+        int step = 0;
+        Timer t;
+        float time = 0;
+        
+        public void setup() { 
+          text = new Text("Bienvenue", 48, width/2, height/2, 0);
+          text.opacity = 0;
+        }
+        public void update() {
+          switch (step) {
+            case 0:
+              time += Time.deltaTime;
+              text.opacity = EasingFunctions.easeInCubic(time) * 100;
+              if (text.opacity >= 255)
+                step++;
+              break;
+            case 1:
+              if (t != null) break;
+              time = 0;
+              t = new Timer(this);
+              t.start();
+              break;
+            case 2:
+              time += Time.deltaTime;
+              text.opacity = 255 - EasingFunctions.easeInCubic(time) * 100;
+              if (text.opacity <= 0) {
+                text.culling = true;
+                text.position.x = -1000;
+                nextElement();
+              }
+              break;
+          }
+          
+        }
+        public void onTimeout() { step++;}
+      },
+      
       
       
       new TimedElement () {
-        ProgressBar p = new ProgressBar(width/2, height/2, 300, 30);
+        Text text;
+        int step = 0;
+        Timer t;
+        float time = 0;
+        
+        public void setup() { 
+          text = new Text("Faites le silence", 48, width/2, height/2, 0);
+          text.opacity = 0;
+        }
+        public void update() {
+          switch (step) {
+            case 0:
+              time += Time.deltaTime;
+              text.opacity = EasingFunctions.easeInCubic(time) * 100;
+              if (text.opacity >= 255)
+                step++;
+              break;
+            case 1:
+              if (t != null) break;
+              time = 0;
+              t = new Timer(this);
+              t.start();
+              break;
+            case 2:
+              time += Time.deltaTime;
+              text.opacity = 255 - EasingFunctions.easeInCubic(time) * 100;
+              if (text.opacity <= 0) {
+                text.culling = true;
+                text.position.x = -1000;
+                nextElement();
+              }
+              break;
+          }
+          
+        }
+        public void onTimeout() { step++; }
+      },
+      
+      
+      new TimedElement() {
+        ProgressBar p;
         Timer t;
         
         public void setup() {
-          p.maxValue = 5;
-          p.value = 0;
           t = new Timer(this);
-          t.waitTime = 5;
           t.start();
+          t.waitTime = 5;
+          p = new ProgressBar(width/2, height/2, 300, 30);
+          p.value = 0;
+          p.maxValue = 5;
         }
         public void update() {
           p.value = 5 - t.timeLeft;
+          Mic.recordSilence();
         }
         public void onTimeout() { 
+          nextElement();
           p.culling = true;
-          p.position.x = -100;
-          nextElement(); 
+          p.position.x = -1000;
         }
       },
       
@@ -269,30 +381,69 @@ public class MySeq extends TimedSequence {
       
       new TimedElement () {
         Text text;
-        public void setup() {
-          text = new Text("Good, this is working.", 48, width/2, height/2);
-          text.opacity = .00001;
+        int step = 0;
+        Timer t;
+        float time = 0;
+        
+        public void setup() { 
+          text = new Text("Maintenant, soufflez", 48, width/2, height/2, 0);
+          text.opacity = 0;
         }
-        public void update() { 
-          if (text.opacity >= 255)
-            text.fadeOut();
-          if (text.opacity <= 0) {
-            text.culling = true;
-            text.position.x = -1000;
-            nextElement();
+        public void update() {
+          switch (step) {
+            case 0:
+              time += Time.deltaTime;
+              text.opacity = EasingFunctions.easeInCubic(time) * 100;
+              if (text.opacity >= 255)
+                step++;
+              break;
+            case 1:
+              if (t != null) break;
+              time = 0;
+              t = new Timer(this);
+              t.start();
+              break;
+            case 2:
+              time += Time.deltaTime;
+              text.opacity = 255 - EasingFunctions.easeInCubic(time) * 100;
+              if (text.opacity <= 0) {
+                text.culling = true;
+                text.position.x = -1000;
+                nextElement();
+              }
+              break;
           }
+          
         }
-        public void onTimeout() { }
+        public void onTimeout() { step++; }
       },
       
       
-      
-      new TimedElement () {
+      new TimedElement() {
+        ProgressBar p;
+        Timer t;
+        
         public void setup() {
-          println("This is the end");
+          t = new Timer(this);
+          t.start();
+          t.waitTime = 5;
+          p = new ProgressBar(width/2, height/2, 300, 30);
+          p.value = 0;
+          p.maxValue = 5;
         }
-        public void update() { }
-        public void onTimeout() { }
+        public void update() {
+          p.value = 5 - t.timeLeft;
+          Mic.recordBlow();
+        }
+        public void onTimeout() { 
+          nextElement();
+          p.culling = true;
+          p.position.x = -1000;
+          Mic.calibrate();
+          println("Seuil de souffle : " + Mic.blowThreshold);
+          println("Assignez cette valeur à Mic.blowThreshold pour tester sans avoir à lancer la séquence d'intro.");
+          new Intro(600, -50);
+        }
       },
       
     };

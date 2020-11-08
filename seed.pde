@@ -2,11 +2,13 @@ public class Seed extends RenderedObject {
 
   float gravity = random(1.7, 2.2);          // vitesse de chute
   float size = random(5, 10);                // rayon de la graine
-  PVector speedMultiplier = new PVector(random(30, 70), random(30, 70));  // Remplace push_ratio_x et y
+  PVector speedMultiplier = new PVector(random(10, 50), random(10, 50));  // Remplace push_ratio_x et y
   boolean is_planted = false;                // Est-ce que la graine a été plantée ?
   
   boolean isFertile = true;                 // une graine isFertile pousse obligatoirement
-  float growProb = 0.1;                         // Probabilité que la graine pousse
+  float growProb = 0.3;                         // Probabilité que la graine pousse
+  PVector speed = new PVector(0, 0);
+
 
   Seed(float pos_x, float pos_y) {
     super();
@@ -18,12 +20,22 @@ public class Seed extends RenderedObject {
   private void physics() {
     // Si graine au-dessus du sol, elle descend
     if (position.y < height-niv_sol+size) {    
-      position.y += gravity;
+      speed.y += 5 * Time.deltaTime;
+      speed.x -= .1 * Time.deltaTime;
+
       
       float amplitude = Mic.getAmplitudeAbove();
       
-      position.x += speedMultiplier.x * amplitude;
-      position.y -= speedMultiplier.y * amplitude;
+      speed.x += amplitude * Time.deltaTime * speedMultiplier.x;
+      speed.y -= amplitude * Time.deltaTime * speedMultiplier.y;
+      
+      position.add(speed);
+      
+      if (position.y < 10)
+        position.y = 10;
+      
+      speed.x = constrain(speed.x, 0, 5);
+      speed.y = constrain(speed.y, -5, 1);
     }
 
     if (position.y >= height-niv_sol+size && !is_planted) {   // si touche sol, la plante pousse

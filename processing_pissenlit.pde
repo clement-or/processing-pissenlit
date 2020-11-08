@@ -18,16 +18,13 @@ void setup() {
   
   new CameraFollow();
   new Musique(this);
-  //new ProgressBar(width/2, height/2, 500, 10);
-  t = new Text("This is a test", 48, width/2, height/2);
-  //new MySeq();
+  //new Intro (600, -50);
+  new MySeq();  // Commentez cette ligne pour skip la calibration
+  // Vous pouvez lire la valeur de calibration dans la console et la remplacer dans la classe Mic pour le test
 }
 
 // Afficher les éléments du jeu via la Camera
 void draw() {
   CameraManager.current.draw();
   Time.update();
-  
-  if (t.opacity >= 255)
-    t.fadeOut();
 }

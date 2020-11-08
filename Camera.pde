@@ -30,7 +30,8 @@ public class Camera {
       //println(obj.renderedPosition + " / " + this.position);
       
       if (!obj.culling || isInBounds(obj)) {
-        obj.draw();
+        if (!obj.disabled)
+          obj.draw();
       } else if (obj instanceof Seed) {
         SeedManager.remove((Seed)obj);
       }
