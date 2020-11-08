@@ -9,6 +9,7 @@ public color noir = color(0);
 
 Text t;
 void setup() {
+  
   frameRate(60);
   size(1200, 600);
   

@@ -61,8 +61,6 @@ public class Seed extends RenderedObject {
     circle(renderedPosition.x, renderedPosition.y, size);   // dessin graine
   }
   
-  
-  
   public RenderedObject createRandomPlant(float x, float y) {
     int rnd = (int)random(0, 4);
     //int rnd = 3;
@@ -84,6 +82,8 @@ public class Seed extends RenderedObject {
     case 3:
       r = new Plant3(x, y);
       break;
+    case 5:
+      r = new Plant6((int)x, (int)y, 300);
     }
   
     return r != null ? r : null;

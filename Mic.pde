@@ -357,21 +357,28 @@ public class MySeq extends TimedSequence {
       new TimedElement() {
         ProgressBar p;
         Timer t;
+        ProgressBar s;
         
         public void setup() {
           t = new Timer(this);
           t.start();
           t.waitTime = 5;
           p = new ProgressBar(width/2, height/2, 300, 30);
+          s = new ProgressBar(width/2, height/2 + 100, 100, 10);
+          s.maxValue = 1;
+          s.borderWidth = 3;
           p.value = 0;
           p.maxValue = 5;
         }
         public void update() {
           p.value = 5 - t.timeLeft;
           Mic.recordSilence();
+          s.value = Mic.getAmplitude();
         }
         public void onTimeout() { 
           nextElement();
+          s.culling = true;
+          s.position.x = -1000;
           p.culling = true;
           p.position.x = -1000;
         }
@@ -422,21 +429,28 @@ public class MySeq extends TimedSequence {
       new TimedElement() {
         ProgressBar p;
         Timer t;
+        ProgressBar s;
         
         public void setup() {
           t = new Timer(this);
           t.start();
           t.waitTime = 5;
           p = new ProgressBar(width/2, height/2, 300, 30);
+          s = new ProgressBar(width/2, height/2 + 100, 100, 10);
+          s.borderWidth = 3;
+          s.maxValue = 1;
           p.value = 0;
           p.maxValue = 5;
         }
         public void update() {
           p.value = 5 - t.timeLeft;
           Mic.recordBlow();
+          s.value = Mic.getAmplitude();
         }
         public void onTimeout() { 
           nextElement();
+          s.culling = true;
+          s.position.x = -1000;
           p.culling = true;
           p.position.x = -1000;
           Mic.calibrate();
