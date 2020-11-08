@@ -45,7 +45,7 @@ public class Camera {
   // Vérifier si l'objet est visible par la caméra ou non
   // Inutile pour le moment
   public boolean isInBounds(RenderedObject obj) {
-    return obj.renderedPosition.x >= 0; 
+    return obj.renderedPosition.x >= -width/4; 
   }
 
   // Ajouter un objet aux objets que la caméra va dessiner

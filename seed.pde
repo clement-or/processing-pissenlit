@@ -62,7 +62,7 @@ public class Seed extends RenderedObject {
   }
   
   public RenderedObject createRandomPlant(float x, float y) {
-    int rnd = (int)random(0, 4);
+    int rnd = (int)random(0, 5);
     //int rnd = 3;
     RenderedObject r = null;
   
