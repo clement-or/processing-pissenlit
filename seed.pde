@@ -5,7 +5,7 @@ public class Seed extends RenderedObject {
   boolean is_planted = false;               // Est-ce que la graine a été plantée ?
   
   boolean isFertile = true;                 // une graine isFertile pousse obligatoirement
-  float growProb = 0.3;                     // Probabilité que la graine pousse
+  float growProb = 0.5;                     // Probabilité que la graine pousse
   PVector speed = new PVector(0, 0);
 
 
@@ -33,7 +33,7 @@ public class Seed extends RenderedObject {
       if (position.y < 10)
         position.y = 10;
       
-      speed.x = constrain(speed.x, 0, 5);
+      speed.x = constrain(speed.x, 0, 3.5);
       speed.y = constrain(speed.y, -5, 1);
     }
 
