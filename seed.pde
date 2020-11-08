@@ -1,12 +1,11 @@
 public class Seed extends RenderedObject {
 
-  float gravity = random(1.7, 2.2);          // vitesse de chute
-  float size = random(5, 10);                // rayon de la graine
-  PVector speedMultiplier = new PVector(random(10, 50), random(10, 50));  // Remplace push_ratio_x et y
-  boolean is_planted = false;                // Est-ce que la graine a été plantée ?
+  float size = random(5, 10);               // rayon de la graine
+  PVector speedMultiplier = new PVector(random(13,16), random(10, 18));  // Remplace push_ratio_x et y
+  boolean is_planted = false;               // Est-ce que la graine a été plantée ?
   
   boolean isFertile = true;                 // une graine isFertile pousse obligatoirement
-  float growProb = 0.3;                         // Probabilité que la graine pousse
+  float growProb = 0.3;                     // Probabilité que la graine pousse
   PVector speed = new PVector(0, 0);
 
 
@@ -62,7 +61,7 @@ public class Seed extends RenderedObject {
   }
   
   public RenderedObject createRandomPlant(float x, float y) {
-    int rnd = (int)random(0, 5);
+    int rnd = (int)random(0, 6);
     //int rnd = 3;
     RenderedObject r = null;
   
