@@ -18,9 +18,10 @@ void setup() {
   Time.init(this);
   
   new CameraFollow();
-  new Musique(this);
+  //new Musique(this);
   //new Intro (600, -50);
-  new MySeq();  // Commentez cette ligne pour skip la calibration
+  //new MySeq();  // Commentez cette ligne pour skip la calibration
+  new Plant7(600, 500);
   // Vous pouvez lire la valeur de calibration dans la console et la remplacer dans la classe Mic pour le test
 }
 
