@@ -1,7 +1,7 @@
 public class Musique { 
 
   SoundFile file;
-  String Musique = ("ReichTehillimIII.mp3");
+  String Musique = ("aprilsun.wav");
   String path;
 
   Musique(PApplet p) {
