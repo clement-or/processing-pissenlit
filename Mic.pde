@@ -173,9 +173,9 @@ public class Text extends RenderedObject {
     culling = false;
   }
   
-  public Text(String text, float size, float xPos, float yPos, float o) {
+  public Text(String text, float size, float xPos, float yPos, float op) {
     super();
-    opacity = o;
+    opacity = op;
     this.text = text;
     font = createFont("Roboto-Thin.ttf", size);
     position.x = xPos;
@@ -187,8 +187,8 @@ public class Text extends RenderedObject {
   public void draw() {
     opacity = constrain(opacity, 0, 255); //<>//
     
-    fill(color(red(textColor), green(textColor), blue(textColor), opacity));
     textFont(font);
+    fill(color(red(textColor), green(textColor), blue(textColor), opacity));
     text(this.text, position.x - textWidth/4, position.y - size/2);
   }
   
@@ -281,11 +281,11 @@ public class MySeq extends TimedSequence {
         
         public void setup() { 
           text = new Text("Bienvenue", 48, width/2, height/2, 0);
-          text.opacity = 0;
         }
         public void update() {
           switch (step) {
             case 0:
+              println("\"Bienvenue\" opacity :", text.opacity, ", time :", time);
               time += Time.deltaTime;
               text.opacity = EasingFunctions.easeInCubic(time) * 100;
               if (text.opacity >= 255)
@@ -321,12 +321,12 @@ public class MySeq extends TimedSequence {
         float time = 0;
         
         public void setup() { 
-          text = new Text("Faites le silence", 48, width/2, height/2, 0);
-          text.opacity = 0;
+          text = new Text("Faites silence", 48, width/2, height/2, 0);
         }
         public void update() {
           switch (step) {
             case 0:
+              println("\"Faites silence\" opacity :", text.opacity, ", time :", time);
               time += Time.deltaTime;
               text.opacity = EasingFunctions.easeInCubic(time) * 100;
               if (text.opacity >= 255)
