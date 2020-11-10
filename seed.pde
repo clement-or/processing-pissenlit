@@ -91,6 +91,11 @@ public class Seed extends RenderedObject {
 
     return r != null ? r : null;
   }
+  
+  public void destroy() {
+    super.destroy();
+    SeedManager.remove(this);
+  }
 }
 
 public static class SeedManager {

@@ -12,4 +12,8 @@ public class RenderedObject {
   public void draw() {
     print("Un objet qui hérite de RenderedObject doit avec une fonction public void draw()");
   }
+  
+  public void destroy() {
+    CameraManager.current.remove(this);
+  }
 }

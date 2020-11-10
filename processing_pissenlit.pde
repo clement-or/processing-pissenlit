@@ -7,7 +7,6 @@ public int niv_sol=100;
 public color rouge = color(255, 0, 0);
 public color noir = color(0);
 
-Text t;
 void setup() {
   
   frameRate(60);
