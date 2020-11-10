@@ -285,7 +285,7 @@ public class MySeq extends TimedSequence {
         public void update() {
           switch (step) {
             case 0:
-              println("\"Bienvenue\" opacity :", text.opacity, ", time :", time);
+              //println("\"Bienvenue\" opacity :", text.opacity, ", time :", time);
               time += Time.deltaTime;
               text.opacity = EasingFunctions.easeInCubic(time) * 100;
               if (text.opacity >= 255)
@@ -326,7 +326,7 @@ public class MySeq extends TimedSequence {
         public void update() {
           switch (step) {
             case 0:
-              println("\"Faites silence\" opacity :", text.opacity, ", time :", time);
+              //println("\"Faites silence\" opacity :", text.opacity, ", time :", time);
               time += Time.deltaTime;
               text.opacity = EasingFunctions.easeInCubic(time) * 100;
               if (text.opacity >= 255)
