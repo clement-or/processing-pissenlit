@@ -92,7 +92,7 @@ public class Plant6 extends RenderedObject {
       // Dessiner la partie noire
       noStroke();
       fill(noir);
-      arc(renderedPosition.x, renderedPosition.y - curRadius, //<>// //<>//
+      arc(renderedPosition.x, renderedPosition.y - curRadius, //<>//
           curRadius*2, curRadius*2,
           0, PI);
       

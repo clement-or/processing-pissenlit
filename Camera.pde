@@ -35,21 +35,11 @@ public class Camera {
       } else if (obj instanceof Seed) {
         SeedManager.remove((Seed)obj);
       }
-      
-      if (obj.culling && !isInBounds(obj))
-        obj.destroy();
     }
 
     // Ajouter les objets de la queue
     renderedObjects.addAll(queuedObjects);
     queuedObjects.clear();
-    
-    for (int i = renderedObjects.size() - 1; i >= 0; i--) {
-      if (removeQueue.contains(i)) {
-        println("Removed " + renderedObjects.get(i));
-        renderedObjects.remove(i);
-      }
-    }
   }
 
   // Vérifier si l'objet est visible par la caméra ou non
@@ -62,15 +52,6 @@ public class Camera {
   // uniquement après la boucle for
   public void add(RenderedObject obj) {
     queuedObjects.add(obj);
-  }
-  
-  ArrayList<Integer> removeQueue = new ArrayList();
-  public void remove(RenderedObject obj) {
-    for (int i = 0; i < renderedObjects.size(); i++) {
-      if (renderedObjects.get(i).equals(obj)) {
-        removeQueue.add(i);
-      }
-    }
   }
 }
 

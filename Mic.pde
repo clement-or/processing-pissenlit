@@ -185,7 +185,7 @@ public class Text extends RenderedObject {
   }
   
   public void draw() {
-    opacity = constrain(opacity, 0, 255); //<>// //<>//
+    opacity = constrain(opacity, 0, 255); //<>//
     
     textFont(font);
     fill(color(red(textColor), green(textColor), blue(textColor), opacity));
@@ -301,7 +301,8 @@ public class MySeq extends TimedSequence {
               time += Time.deltaTime;
               text.opacity = 255 - EasingFunctions.easeInCubic(time) * 100;
               if (text.opacity <= 0) {
-                text.destroy();
+                text.culling = true;
+                text.position.x = -1000;
                 nextElement();
               }
               break;
@@ -341,7 +342,8 @@ public class MySeq extends TimedSequence {
               time += Time.deltaTime;
               text.opacity = 255 - EasingFunctions.easeInCubic(time) * 100;
               if (text.opacity <= 0) {
-                text.destroy();
+                text.culling = true;
+                text.position.x = -1000;
                 nextElement();
               }
               break;
@@ -374,9 +376,11 @@ public class MySeq extends TimedSequence {
           s.value = Mic.getAmplitude();
         }
         public void onTimeout() { 
-          s.destroy();
-          p.destroy();
           nextElement();
+          s.culling = true;
+          s.position.x = -1000;
+          p.culling = true;
+          p.position.x = -1000;
         }
       },
       
@@ -410,7 +414,8 @@ public class MySeq extends TimedSequence {
               time += Time.deltaTime;
               text.opacity = 255 - EasingFunctions.easeInCubic(time) * 100;
               if (text.opacity <= 0) {
-                text.destroy();
+                text.culling = true;
+                text.position.x = -1000;
                 nextElement();
               }
               break;
@@ -444,8 +449,10 @@ public class MySeq extends TimedSequence {
         }
         public void onTimeout() { 
           nextElement();
-          s.destroy();
-          p.destroy();
+          s.culling = true;
+          s.position.x = -1000;
+          p.culling = true;
+          p.position.x = -1000;
           Mic.calibrate();
           println("Seuil de souffle : " + Mic.blowThreshold);
           println("Assignez cette valeur à Mic.blowThreshold pour tester sans avoir à lancer la séquence d'intro.");
